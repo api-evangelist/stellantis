@@ -168,44 +168,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/stellantis-cloud-docg-device-management-api-openapi.yml
-- aid: stellantis:stellantis-data-treatment-api
-  name: Stellantis Data Treatment API
-  description: 'This is the description of the *Stellantis Connected Car V2 API*. The speccification is  is based on **OpenAPI Specification version
-
-    3** and can be displayed using [ReDoc](https://github.com/Rebilly/ReDoc) or [Swagger](http://swagger.io).'
-  humanURL: https://github.com/Stellantis/StellantisCloudCapability.github.io
-  baseURL: https://server/api/connectedcar/v1
-  properties:
-  - type: OpenAPI
-    url: openapi/_original/stellantis-data-treatment-openapi.yml
-- aid: stellantis:stellantis-data-treatment-system-api
-  name: Stellantis Data Treatment System API
-  description: 'This is the description of the *Stellantis Connected Car V2 API*. The speccification is  is based on **OpenAPI Specification version
-
-    3** and can be displayed using [ReDoc](https://github.com/Rebilly/ReDoc)a or [Swagger](http://swagger.io).'
-  humanURL: https://github.com/Stellantis/StellantisCloudCapability.github.io
-  baseURL: https://server/api/connectedcar/v1
-  properties:
-  - type: OpenAPI
-    url: openapi/_original/stellantis-data-treatment-system-openapi.yml
-  - type: JSONSchema
-    url: json-schema/stellantis-group-maintain-schema.json
-  - type: JSONSchema
-    url: json-schema/stellantis-data-stream-schema.json
-  - type: JSONSchema
-    url: json-schema/stellantis-group-obj-schema.json
-  - type: JSONSchema
-    url: json-schema/stellantis-data-stream-status-setter-schema.json
-- aid: stellantis:stellantis-data-treatment-api
-  name: Stellantis Data Treatment API
-  description: 'This is the description of the *Stellantis Connected Car V2 API*. The speccification is  is based on **OpenAPI Specification version
-
-    3** and can be displayed using [ReDoc](https://github.com/Rebilly/ReDoc) or [Swagger](http://swagger.io).'
-  humanURL: https://github.com/Stellantis/StellantisCloudCapability.github.io
-  baseURL: https://server/api/connectedcar/v1
-  properties:
-  - type: OpenAPI
-    url: openapi/_original/stellantis-data-treatment-openapi.yml
 - aid: stellantis:stellantis-data-treatment-system-api
   name: Stellantis Data Treatment System API
   description: 'This is the description of the *Stellantis Connected Car V2 API*. The speccification is  is based on **OpenAPI Specification version
