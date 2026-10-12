@@ -1,0 +1,9 @@
+generated: '2026-10-13'
+method: probed
+generator: harvest-sibling-contracts.py
+source: https://raw.githubusercontent.com/Stellantis/StellantisCloudCapability.github.io/main/assets/openapi/data-treatment_system.yaml
+found_on: https://github.com/Stellantis/StellantisCloudCapability.github.io
+operations: gh:data-treatment_system.yaml
+version: 3.0.0
+ownership: sibling of a contract the pass accepted on the same host; URL names the
+  provider

@@ -1,0 +1,87 @@
+generated: '2026-10-13'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- openapi/stellantis-cloud-docg-device-management-api-openapi.yml
+- openapi/stellantis-cloud-notification-center-api-openapi.yml
+- openapi/stellantis-cloud-platform-notification-webhooks-openapi.yml
+- openapi/stellantis-connected-car-b2b-api-openapi.yml
+- openapi/stellantis-connected-car-b2b-webhooks-openapi.yml
+- openapi/stellantis-connected-car-b2c-webhooks-openapi.yml
+- openapi/stellantis-connected-vehicle-api-openapi.json
+format: custom
+envelope:
+  media_type: application/json
+  schema: ErrorModel
+coverage:
+  operations: 201
+  statuses_declared: 11
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad request
+  operations: 85
+  media_types: []
+  schema: 400ErrorResponse
+- status: 401
+  title: Unauthorized
+  description: Authentication failed/ Token is invalid
+  operations: 70
+  media_types: []
+  schema: 401ErrorResponse
+- status: 403
+  title: Forbidden
+  description: Requested user and device is not associated/ Insufficient scope
+  operations: 83
+  media_types: []
+  schema: 403ErrorResponse
+- status: 404
+  title: Not Found
+  description: Requested resource not found
+  operations: 72
+  media_types: []
+  schema: 404ErrorResponse
+- status: 408
+  title: Request Timeout
+  description: Request Timeout
+  operations: 70
+  media_types: []
+  schema: ErrorModel
+- status: 415
+  title: Unsupported Media Type
+  description: Unsupported media type
+  operations: 62
+  media_types: []
+  schema: null
+- status: 422
+  title: Unprocessable Content
+  description: HTTP 422 Unprocessable Entity
+  operations: 8
+  media_types: []
+  schema: 422ErrorResponse
+- status: 500
+  title: Internal Server Error
+  description: Internal Service failure
+  operations: 70
+  media_types: []
+  schema: 500ErrorResponse
+- status: 503
+  title: Service Unavailable
+  description: Service unavailable
+  operations: 70
+  media_types: []
+  schema: 503ErrorResponse
+- status: 504
+  title: Gateway Timeout
+  description: Gateway Timeout
+  operations: 70
+  media_types: []
+  schema: ErrorModel
+- status: default
+  title: null
+  description: Remote subscribe request error
+  operations: 52
+  media_types:
+  - application/json
+  schema: xError

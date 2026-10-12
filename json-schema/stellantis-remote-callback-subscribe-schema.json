@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/stellantis/main/json-schema/stellantis-remote-callback-subscribe-schema.json",
+  "title": "RemoteCallbackSubscribe",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/stellantis-connected-car-b2b-api-openapi.yml#/components/schemas/RemoteCallbackSubscribe",
+  "allOf": [
+    {
+      "$ref": "#/$defs/CallbackSubscribe"
+    },
+    {
+      "description": "Remote access callback subscription parameters.",
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "retryPolicy": {
+          "type": "object",
+          "description": "The retry policy to apply when notification failed.",
+          "required": [
+            "policy"
+          ],
+          "properties": {
+            "policy": {
+              "type": "string",
+              "description": "Defines the retry rules following a notification failure (ie the return code is not HTTP 2XX for  WebHook mode). ```None``` means with a single try, ```Bounded``` with a limited number of tries. \n",
+              "enum": [
+                "None",
+                "Bounded"
+              ]
+            }
+          }
+        },
+        "callback": {
+          "type": "object",
+          "properties": {
+            "webhook": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/Webhook"
+                },
+                {
+                  "properties": {
+                    "attributes": {
+                      "$ref": "#/$defs/RemoteAttributeSet"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "remoteTypes": {
+          "$ref": "#/$defs/RemoteTypes"
+        }
+      },
+      "required": [
+        "remoteTypes"
+      ]
+    }
+  ],
+  "$defs": {
+    "Attribute": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Header",
+            "Body",
+            "Query"
+          ],
+          "description": "3 attributes type:\n\n|Attribute-type|Role|\n|----------|-------------|\n|Header|-Will be add as http header extension \"x-######:\"|\n|Body|-Will be simply add to event body map attribute (see monitor event definition in template document)|\n|Query|-Will set as http query parameter when invoking the Webhook|\n"
+        },
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string",
+              "enum": [
+                "vin",
+                "monitorID",
+                "fleetID",
+                "vid"
+              ],
+              "description": "A value  that will be associated with the provided key as is if expressed as literal value or  contextually valued if prefixed with the dollar sign ($).  \n\n* Disclaimer: if the var \"vin\" is used as a query parameter, the batchnotify will be no more possible and each event will be sent through a separated request!.\n* example: Having a vin=VIN123456, the following attribute set:\n        ```\"attributes\": [\n            {\n              \"type\": \"Header\",\n              \"key\": \"X-vehicle-id\"\n              \"value\":\"$vin\"\n            }\n          ]```\n  will be valued as http header extension: \n          \n  *\"X-vehicle-id: VIN123456\"*\n"
+            }
+          ]
+        }
+      },
+      "required": [
+        "key",
+        "value",
+        "type"
+      ]
+    },
+    "AttributeSet": {
+      "type": "array",
+      "description": "Additional attributes-set as key/value pairs wich will be added to the request when sending the event. It can be used as http header enhancement (such as headers can be used as an authentication parameter when posting the event) or simply added to the notification event body (as set of key/values) or finally as additional query parameters.\n",
+      "items": {
+        "$ref": "#/$defs/Attribute"
+      }
+    },
+    "CallbackSubscribe": {
+      "description": "Callback subscription parameters.",
+      "type": "object",
+      "properties": {
+        "retryPolicy": {
+          "type": "object",
+          "description": "The retry policy to apply when notification failed.",
+          "required": [
+            "policy"
+          ],
+          "properties": {
+            "policy": {
+              "type": "string",
+              "description": "Defines the retry rules following a notification failure (ie the return code is not HTTP 2XX for  WebHook mode). ```None``` means with a single try, ```Bounded``` with a limited number of tries and ```Always```  with an infinite number of tries. \n",
+              "enum": [
+                "None",
+                "Bounded",
+                "Always"
+              ]
+            },
+            "retryNumber": {
+              "description": "Maximum number of attempts (to be used with a retryPolicy set to ```Bounded```).",
+              "type": "integer",
+              "default": 3,
+              "minimum": 1
+            },
+            "retryDelay": {
+              "description": "Time to wait (expressed in seconds) before retrying to push a notification (ignored if retryPolicy is set to ```None```).",
+              "type": "integer",
+              "default": 10,
+              "minimum": 1
+            }
+          }
+        },
+        "batchNotify": {
+          "description": "\nNotification batch of events defined by a time window and batch size. If this field is not set, the callback will post only one event by call.\n\n  * **At least, the ```size``` parameter should be provided.**\n  * **If the time window is not set then the default value will be applied.**\n",
+          "type": "object",
+          "properties": {
+            "size": {
+              "type": "integer",
+              "description": "Batch size (positive value and not zero)."
+            },
+            "timeWindow": {
+              "type": "integer",
+              "default": 60,
+              "minimum": 5,
+              "description": "Notification batch window size (expressed in seconds)."
+            }
+          },
+          "required": [
+            "size"
+          ]
+        },
+        "callback": {
+          "type": "object",
+          "properties": {
+            "webhook": {
+              "$ref": "#/$defs/Webhook"
+            }
+          },
+          "required": [
+            "webhook"
+          ]
+        }
+      },
+      "required": [
+        "callback"
+      ]
+    },
+    "RemoteAttribute": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/Attribute"
+        },
+        {
+          "properties": {
+            "value": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "vin",
+                    "callbackID",
+                    "remoteType",
+                    "fleetID"
+                  ],
+                  "description": "Set of variables that will be contextually valued and used as attribute value. To reference the variable, prefix its name with the dollar sign ($)  \n\n* Disclaimer: if the var \"vin\" is used as a query parameter, the batchnotify will be no more possible and each event will be sent through a separated request!.\n* example: Having a vin=VIN123456, the following attribute set:\n        ```\"attributes\": [\n            {\n              \"type\": \"Header\",\n              \"key\": \"X-vehicle-id\"\n              \"value\":\"$vin\"\n            }\n          ]```\n  will be valued as http header extension: \n          \n  *\"X-vehicle-id: VIN123456\"*          \n"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "RemoteAttributeSet": {
+      "type": "array",
+      "description": "Additional attributes-set as key/value pairs wich will be added to the request when sending the event. It can be used as http header enhancement (such as headers can be used as an authentication parameter when posting the event) or simply added to the notification event body (as set of key/values) or finally as additional query parameters.\n",
+      "items": {
+        "$ref": "#/$defs/RemoteAttribute"
+      }
+    },
+    "RemoteType": {
+      "type": "string",
+      "enum": [
+        "ThermalPreconditioning",
+        "ElectricBatteryChargingRequest",
+        "Horn",
+        "Doors",
+        "Lights",
+        "Immobilization",
+        "Stolen",
+        "WakeUp",
+        "Navigation"
+      ]
+    },
+    "RemoteTypes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/RemoteType"
+      }
+    },
+    "Url": {
+      "type": "string",
+      "description": "URL format follows [RFC 3986](https://tools.ietf.org/html/rfc3986) and usually looks like this ` scheme://host[:port][/Path] `"
+    },
+    "Webhook": {
+      "title": "Webhook",
+      "description": "Defines the webhook for htp notification .",
+      "type": "object",
+      "properties": {
+        "target": {
+          "$ref": "#/$defs/Url"
+        },
+        "name": {
+          "type": "string",
+          "description": "Webhook name."
+        },
+        "attributes": {
+          "$ref": "#/$defs/AttributeSet"
+        }
+      },
+      "required": [
+        "target",
+        "name"
+      ]
+    }
+  }
+}

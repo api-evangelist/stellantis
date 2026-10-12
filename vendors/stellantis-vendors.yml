@@ -1,0 +1,82 @@
+generated: '2026-10-13'
+method: probed
+source: pre-flight dossier (docs platform, portal detections) + CNAME chains and response headers of the hosts apis.yml names
+registry: all/0-working/vendors.yml
+areas_vocabulary:
+- documentation
+- developer-portal
+- api-gateway
+- cdn
+- hosting
+- sdk-generation
+- api-collections
+- status-page
+- support
+- community
+- identity
+- mcp-hosting
+vendors:
+- vendor: aws-api-gateway
+  name: Amazon API Gateway
+  area: api-gateway
+  host: api.stellantis-developers.com
+  evidence: header:x-amz-apigw-id
+  signal: header
+  confidence: high
+  kin_score: []
+- vendor: akamai
+  name: Akamai
+  area: cdn
+  host: www.stellantis.com
+  evidence: cname:akamaiedge.net
+  signal: cname
+  confidence: high
+  kin_score: []
+- vendor: cloudfront
+  name: Amazon CloudFront
+  area: cdn
+  host: developers.stellantis.com
+  evidence: cname:cloudfront.net
+  signal: cname
+  confidence: high
+  kin_score: []
+- vendor: fastly
+  name: Fastly
+  area: cdn
+  host: developer.groupe-psa.io
+  evidence: header:x-served-by:cache-
+  signal: header
+  confidence: high
+  kin_score: []
+- vendor: github-pages
+  name: GitHub Pages
+  area: hosting
+  host: developer.groupe-psa.io
+  evidence: cname:github.io
+  signal: cname
+  confidence: high
+  kin_score: []
+reliance:
+  areas_vendor_served:
+  - api-gateway
+  - cdn
+  - hosting
+  vendor_count: 5
+  areas_observed: 12
+  share_of_observable_areas: 0.25
+  note: areas where a third party was DETECTED serving this provider; an area absent here was either self-run or not observed, and this script
+    cannot tell those apart
+checked:
+- 'docs-platform: no-docs-host'
+- www.stellantis.com (Website)
+- developers.stellantis.com (DeveloperPortal)
+- developer.groupe-psa.io (DeveloperPortal)
+- developers.stellantis.com (Documentation)
+- developer.groupe-psa.io (Documentation)
+- developer.groupe-psa.io (GettingStarted)
+- developer.groupe-psa.io (APIReference)
+- developer.groupe-psa.io (Support)
+- api.stellantis-developers.com (baseURL)
+- api.mpsa.com (baseURL)
+- api-cert.groupe-psa.com (baseURL)
+- server (baseURL)

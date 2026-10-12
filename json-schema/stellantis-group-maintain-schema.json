@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/stellantis/main/json-schema/stellantis-group-maintain-schema.json",
+  "title": "GroupMaintain",
+  "description": "The 'Add' and 'Remove' actions require a Vin list while the 'Copy' action requires the 'groups' parameter. The parameters must therefore be submitted with  consistency (see below) otherwise, an error (400) will be raised. \n\n| Action  | Mandatory field  |  \n|---|---|\n| Add  | vins (non empty)  | \n| Remove   | vins (non empty)  | \n| Copy  | groups (non empty)  |            \n",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/_original/stellantis-data-treatment-system-openapi.yml#/components/schemas/GroupMaintain",
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": [
+        "Add",
+        "Remove",
+        "Copy"
+      ]
+    },
+    "vins": {
+      "type": "array",
+      "description": "List of (owned) vehicle identifiers.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "groups": {
+      "type": "array",
+      "description": "List of (owned) )group IDs to copy from.",
+      "items": {
+        "type": "string",
+        "pattern": "([0-9a-fA-F]|-|_)*"
+      }
+    }
+  }
+}

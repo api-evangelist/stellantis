@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/stellantis/main/json-schema/stellantis-group-obj-schema.json",
+  "title": "GroupObj",
+  "description": "A vehicles group.",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/_original/stellantis-data-treatment-system-openapi.yml#/components/schemas/GroupObj",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "\\b(?!root\\w*\\b)\\w+",
+      "description": "The group name should not be prefixed by word \"*root*\" since its the master group name."
+    },
+    "description": {
+      "type": "string",
+      "description": "Additional group description."
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

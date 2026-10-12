@@ -1,0 +1,511 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/stellantis/main/json-schema/stellantis-vehicle-schema.json",
+  "title": "Vehicle",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/stellantis-connected-car-b2b-api-openapi.yml#/components/schemas/Vehicle",
+  "allOf": [
+    {
+      "$ref": "#/$defs/UpdatedAtField"
+    },
+    {
+      "$ref": "#/$defs/CreatedAtField"
+    },
+    {
+      "title": "Vehicle Information",
+      "type": "object",
+      "properties": {
+        "_links": {
+          "type": "object",
+          "properties": {
+            "self": {
+              "$ref": "#/$defs/Link"
+            },
+            "fleet": {
+              "$ref": "#/$defs/Link"
+            },
+            "lastPosition": {
+              "$ref": "#/$defs/Link"
+            },
+            "trips": {
+              "$ref": "#/$defs/Link"
+            },
+            "maintenance": {
+              "$ref": "#/$defs/Link"
+            },
+            "alerts": {
+              "$ref": "#/$defs/Link"
+            },
+            "status": {
+              "$ref": "#/$defs/Link"
+            },
+            "telemetry": {
+              "$ref": "#/$defs/Link"
+            },
+            "collisions": {
+              "$ref": "#/$defs/Link"
+            },
+            "alarms": {
+              "$ref": "#/$defs/Link"
+            },
+            "monitors": {
+              "$ref": "#/$defs/Link"
+            },
+            "remotes": {
+              "$ref": "#/$defs/Link"
+            },
+            "callbacks": {
+              "$ref": "#/$defs/Link"
+            }
+          },
+          "required": [
+            "self"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "vin": {
+          "description": "Serial number of a vehicle",
+          "type": "string"
+        },
+        "motorization": {
+          "description": "Motorization of the vehicle.",
+          "type": "string",
+          "enum": [
+            "Electric",
+            "Hybrid",
+            "Thermic",
+            "Hydrogen"
+          ]
+        },
+        "brand": {
+          "deprecated": true,
+          "description": "Brand of a vehicle",
+          "type": "string"
+        },
+        "pictures": {
+          "deprecated": true,
+          "description": "With the links it's possible to see the pictures of the vehicle",
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 12,
+          "items": {
+            "$ref": "#/$defs/Url"
+          }
+        },
+        "_embedded": {
+          "type": "object",
+          "properties": {
+            "extension": {
+              "$ref": "#/$defs/VehicleExtension"
+            }
+          }
+        }
+      },
+      "required": [
+        "_links"
+      ]
+    }
+  ],
+  "$defs": {
+    "CreatedAtField": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "description": "Date when the resource has been created.",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Link": {
+      "type": "object",
+      "description": "A Link Object as defined by [JSONHAL#Link Object](https://tools.ietf.org/html/draft-kelly-json-hal-08#section-5).",
+      "required": [
+        "href"
+      ],
+      "properties": {
+        "href": {
+          "$ref": "#/$defs/Url"
+        },
+        "templated": {
+          "type": "boolean",
+          "description": "SHOULD be true when the Link Object's \"href\" property is an [URI Template](https://tools.ietf.org/html/rfc6570)"
+        },
+        "type": {
+          "type": "string",
+          "description": "a hint to indicate the media type expected when dereferencing the target resource."
+        },
+        "deprecation": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Url"
+            },
+            {
+              "description": "indicates that the link is to be deprecated (i.e. removed) at a future date.  Its value is a URL that SHOULD provide further information about the deprecation."
+            }
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string",
+          "description": "Its value is a string and is intended for labelling the link with a human-readable identifier (as defined by [RFC5988](https://tools.ietf.org/html/rfc5988))."
+        },
+        "profile": {
+          "type": "string",
+          "description": "Its value is a string and is intended for indicating the language of the target resource (as defined by [RFC5988])."
+        },
+        "hreflang": {
+          "type": "string",
+          "description": "Its value is a string which is a URI that hints about the profile (as defined by [I-D.wilde-profile-link](https://tools.ietf.org/html/draft-kelly-json-hal-08#ref-I-D.wilde-profile-link)) of the target resource."
+        }
+      }
+    },
+    "OnboardCapabilities": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "description": "List of retrievable data represented by their scopes.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "data:vehicle:devices:pnc",
+              "data:telemetry",
+              "data:telemetry:environment",
+              "data:telemetry:privacy",
+              "data:telemetry:vehicle",
+              "data:telemetry:vehicle:ignition",
+              "data:telemetry:vehicle:preconditioning",
+              "data:telemetry:vehicle:energies",
+              "data:telemetry:vehicle:engines",
+              "data:telemetry:vehicle:doorsState",
+              "data:telemetry:vehicle:powertrain",
+              "data:telemetry:vehicle:battery",
+              "data:telemetry:vehicle:safety",
+              "data:telemetry:vehicle:odometer",
+              "data:telemetry:vehicle:kinetic",
+              "data:telemetry:vehicle:transmission",
+              "data:telemetry:vehicle:adas",
+              "data:telemetry:vehicle:lightingSystem",
+              "data:telemetry:vehicle:maintenance",
+              "data:telemetry:vehicle:drivingBehavior",
+              "data:telemetry:vehicle:wipingBlades",
+              "data:telemetry:vehicle:alarm",
+              "data:position",
+              "data:trip",
+              "data:alert",
+              "data:collision"
+            ]
+          }
+        },
+        "remote": {
+          "description": "List of callable remote functions and associated supported properties.",
+          "type": "object",
+          "required": [
+            "preconditioning",
+            "door",
+            "horn",
+            "charging",
+            "lights",
+            "wakeup",
+            "navigation",
+            "stolen"
+          ],
+          "properties": {
+            "preconditioning": {
+              "required": [
+                "supported",
+                "scopeName",
+                "parameters"
+              ],
+              "type": "object",
+              "properties": {
+                "supported": {
+                  "type": "boolean",
+                  "description": "true means remote preconditioning is supported."
+                },
+                "scopeName": {
+                  "type": "string",
+                  "enum": [
+                    "remote:preconditioning:write"
+                  ],
+                  "default": "remote:preconditioning:write"
+                },
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "programs": {
+                      "type": "object",
+                      "properties": {
+                        "size": {
+                          "type": "integer",
+                          "description": "Max number of program accepted by the vehicle."
+                        }
+                      },
+                      "required": [
+                        "size"
+                      ]
+                    },
+                    "immediate": {
+                      "type": "boolean",
+                      "description": "true means remote preconditioning immediate action is supported."
+                    }
+                  }
+                }
+              }
+            },
+            "charging": {
+              "type": "object",
+              "required": [
+                "supported",
+                "scopeName",
+                "parameters"
+              ],
+              "properties": {
+                "supported": {
+                  "type": "boolean",
+                  "description": "true means remote charging is supported."
+                },
+                "scopeName": {
+                  "type": "string",
+                  "enum": [
+                    "remote:charging:write"
+                  ]
+                },
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "immediate": {
+                      "properties": {
+                        "start": {
+                          "type": "boolean",
+                          "description": "true means remote immediate charge start action is supported."
+                        },
+                        "stop": {
+                          "type": "boolean",
+                          "description": "true means remote immediate charge stop action is supported."
+                        }
+                      }
+                    },
+                    "schedule": {
+                      "required": [
+                        "programs",
+                        "nextDelayedTime",
+                        "preferences"
+                      ],
+                      "properties": {
+                        "programs": {
+                          "type": "object",
+                          "properties": {
+                            "supported": {
+                              "type": "boolean",
+                              "description": "true means remote charging schedule[programs] is supported."
+                            },
+                            "size": {
+                              "type": "integer",
+                              "description": "Max number of program accepted by the vehicle."
+                            }
+                          },
+                          "required": [
+                            "supported"
+                          ]
+                        },
+                        "nextDelayedTime": {
+                          "type": "boolean",
+                          "description": "true means remote charging schedule[nextDelayedTime] is supported."
+                        }
+                      }
+                    },
+                    "preferences": {
+                      "properties": {
+                        "level": {
+                          "type": "boolean",
+                          "description": "true means remote charging preferences[level] is supported."
+                        },
+                        "type": {
+                          "type": "boolean",
+                          "description": "true means remote charging preferences[type] is supported."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "door": {
+              "type": "object",
+              "required": [
+                "supported",
+                "scopeName"
+              ],
+              "properties": {
+                "supported": {
+                  "type": "boolean",
+                  "description": "true means remote door is supported."
+                },
+                "scopeName": {
+                  "type": "string",
+                  "enum": [
+                    "remote:door:write"
+                  ],
+                  "default": "remote:door:write"
+                }
+              }
+            },
+            "horn": {
+              "type": "object",
+              "required": [
+                "supported",
+                "scopeName"
+              ],
+              "properties": {
+                "supported": {
+                  "type": "boolean",
+                  "description": "true means remote horn is supported."
+                },
+                "scopeName": {
+                  "type": "string",
+                  "enum": [
+                    "remote:horn:write"
+                  ],
+                  "default": "remote:horn:write"
+                }
+              }
+            },
+            "lights": {
+              "type": "object",
+              "required": [
+                "supported",
+                "scopeName"
+              ],
+              "properties": {
+                "supported": {
+                  "type": "boolean",
+                  "description": "true means remote lights is supported."
+                },
+                "scopeName": {
+                  "type": "string",
+                  "enum": [
+                    "remote:lights:write"
+                  ],
+                  "default": "remote:lights:write"
+                }
+              }
+            },
+            "wakeup": {
+              "type": "object",
+              "required": [
+                "supported",
+                "scopeName"
+              ],
+              "properties": {
+                "supported": {
+                  "type": "boolean",
+                  "description": "true means remote wakeup is supported."
+                },
+                "scopeName": {
+                  "type": "string",
+                  "enum": [
+                    "remote:wakeup:write"
+                  ],
+                  "default": "remote:wakeup:write"
+                }
+              }
+            },
+            "navigation": {
+              "type": "object",
+              "required": [
+                "supported",
+                "scopeName"
+              ],
+              "properties": {
+                "supported": {
+                  "type": "boolean",
+                  "description": "true means remote navigation is supported."
+                },
+                "scopeName": {
+                  "type": "string",
+                  "enum": [
+                    "remote:navigation:write"
+                  ],
+                  "default": "remote:navigation:write"
+                }
+              }
+            },
+            "stolen": {
+              "type": "object",
+              "properties": {
+                "supported": {
+                  "type": "boolean",
+                  "description": "True means remote navigation is supported."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "UpdatedAtField": {
+      "type": "object",
+      "properties": {
+        "updatedAt": {
+          "description": "Date when the resource has been updated.",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Url": {
+      "type": "string",
+      "description": "URL format follows [RFC 3986](https://tools.ietf.org/html/rfc3986) and usually looks like this ` scheme://host[:port][/Path] `"
+    },
+    "VehicleBranding": {
+      "type": "object",
+      "properties": {
+        "brand": {
+          "description": "Brand of a vehicle",
+          "type": "string"
+        },
+        "label": {
+          "description": "Car model description.",
+          "type": "string"
+        }
+      }
+    },
+    "VehicleExtension": {
+      "allOf": [
+        {
+          "description": "Additional vehicle  information."
+        },
+        {
+          "properties": {
+            "onboardCapabilities": {
+              "$ref": "#/$defs/OnboardCapabilities"
+            },
+            "branding": {
+              "$ref": "#/$defs/VehicleBranding"
+            },
+            "pictures": {
+              "$ref": "#/$defs/VehiclePictures"
+            }
+          }
+        }
+      ]
+    },
+    "VehiclePictures": {
+      "description": "Link to a vehicle picture.",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": {
+        "$ref": "#/$defs/Url"
+      }
+    }
+  }
+}

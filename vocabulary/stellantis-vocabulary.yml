@@ -1,0 +1,426 @@
+generated: '2026-10-13'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- openapi/stellantis-cloud-docg-device-management-api-openapi.yml
+- openapi/stellantis-cloud-notification-center-api-openapi.yml
+- openapi/stellantis-cloud-platform-notification-webhooks-openapi.yml
+- openapi/stellantis-connected-car-b2b-api-openapi.yml
+vocabulary:
+  name: Stellantis Domain Vocabulary
+  description: 'Terms declared by Stellantis''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-13'
+  terms:
+  - term: Vehicles
+    definition: Access to attributes and IoT data associated with the vehicle.
+    tags:
+    - Resource Group
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - term: Trips
+    definition: Describe Trips of a vehicle.
+    tags:
+    - Resource Group
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - term: Channels
+    definition: Describe a subscription to an output channel for remote or monitor notification events or data-stream features.
+    tags:
+    - Resource Group
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - term: Monitors
+    definition: Describe the vehicle monitor features.
+    tags:
+    - Resource Group
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - term: Remotes
+    definition: Describe the vehicle remote features.
+    tags:
+    - Resource Group
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - term: Message Webhook
+    definition: Message model sent through webhook.
+    tags:
+    - Resource Group
+    source: openapi/stellantis-cloud-platform-notification-webhooks-openapi.yml
+  - term: Message Push-Notif
+    definition: Message model sent through webhook .
+    tags:
+    - Resource Group
+    source: openapi/stellantis-cloud-platform-notification-webhooks-openapi.yml
+  - term: Capabilities
+    definition: Access to Vehicles details & onboard capabilities
+    tags:
+    - Resource Group
+    source: openapi/stellantis-connected-car-b2b-api-openapi.yml
+  - term: Fleet
+    definition: To retreive Fleet details and access resources in **batch mode** (without vehicle or trip filtering).
+    tags:
+    - Resource Group
+    source: openapi/stellantis-connected-car-b2b-api-openapi.yml
+  - term: Remote
+    definition: Vehicle remote access.
+    tags:
+    - Resource Group
+    source: openapi/stellantis-connected-car-b2b-api-openapi.yml
+  - term: Remote-Webhook
+    definition: Remote webhook model.
+    tags:
+    - Resource Group
+    source: openapi/stellantis-connected-car-b2b-webhooks-openapi.yml
+  - term: Monitor-Webhook
+    definition: Monitor webhook model.
+    tags:
+    - Resource Group
+    source: openapi/stellantis-connected-car-b2b-webhooks-openapi.yml
+  - term: TripEnergy
+    definition: Describe vehicle energy supply for thermic, low emission vehicle or both.
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/TripEnergy
+  - term: EnergyType
+    definition: Energy type present on the vehicle.
+    tags:
+    - Enumeration
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/EnergyType
+  - term: EnergySubType
+    definition: Energy subtype. This field is not mandatory and therefore if it is not present, it means that the resource consumer should only
+      process the primary energy type. The enumeration of the subtypes is not exhaustive and may contain more elements depending on the evolution
+      of the vehicles. The consumer of the data must take this constraint into account. The Fossil and Electric energy subtypes are only u
+    tags:
+    - Enumeration
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/EnergySubType
+  - term: VehicleCapability
+    definition: 'Object declared by the contract with fields: vin, brand, model, motorization, onboardCapabilities.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/VehicleCapability
+  - term: OnboardCapabilities
+    definition: Provides details on the scopes for data and remote commands vehicle is capable of. Data and remote section will be populated only
+      if vehicle is supported by platform
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/OnboardCapabilities
+  - term: Tab_Links
+    definition: '[HAL](https://en.wikipedia.org/wiki/Hypertext_Application_Language#Convention) (Hypertext Application Language) link collection'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/Tab_Links
+  - term: CollectionResult
+    definition: 'Object declared by the contract with fields: _links, total, totalPage, currentPage, _embedded.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/CollectionResult
+  - term: Report
+    definition: 'Object declared by the contract with fields: active, type, severity.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/AlertReport
+  - term: VehicleExtension
+    definition: Additional vehicle information.
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/VehicleExtension
+  - term: CallCenterNumbers
+    definition: Call Center telephone numbers to be called in case of emergency situation/crash (ecall), vehicle breakdown (acall), stolen vehicle
+      (svl)
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/CallCenterNumbers
+  - term: TelephoneNumberDetails
+    definition: List of call Types and associated call center numbers based on brand and country of vehicle
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/TelephoneNumberDetails
+  - term: Devices
+    definition: 'All device items in this list will share the same data model, "Device", which will express its type and expose a details map
+      containing specificities as key/value pairs. The supported device details with their key/values pairs are: |Type|Key|Value| |----|----|-------------|
+      |pnc|pcid|Value of vehicle provisioning certificate| |pnc|macAddress|Vehicle mac address for charging|'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/Devices
+  - term: Device
+    definition: Specific information related to a particular device specified in type
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/Device
+  - term: DeviceDetails
+    definition: Key value pair for more details related to device
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/DeviceDetails
+  - term: GeoPosition
+    definition: 'Object declared by the contract with fields: type, geometry.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/GeoPosition
+  - term: Properties
+    definition: Position Properties
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/PositionProperties
+  - term: JeepTrailRequest
+    definition: 'Object declared by the contract with fields: position.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/JeepTrailRequest
+  - term: JeepTrailsPoiInfo
+    definition: 'Object declared by the contract with fields: name, phone, categorySet, categories, classifications.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/JeepTrailsPoiInfo
+  - term: TipsContainer
+    definition: 'Object declared by the contract with fields: acceleration, deceleration, speed, gear, regeneration.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/TipsContainer
+  - term: TipContainer
+    definition: 'Object declared by the contract with fields: definition, assessment, tips.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/TipContainer
+  - term: EditWaypointBreadcrumb
+    definition: 'Object declared by the contract with fields: isWayPoint, wayPointName, wayPointType1, wayPointType2.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/EditWaypointBreadcrumb
+  - term: AlertDetailsBase
+    definition: 'Object declared by the contract with fields: report, active.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/AlertDetailsBase
+  - term: AlertReportDetails
+    definition: List of active and inactive alerts included in the Vehicle Health Report. This report is generated by the vehicle, and the alerts
+      included in the report are determined by the vehicle's configuration
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/AlertReportDetails
+  - term: ActiveAlertDetails
+    definition: List of active alerts on vehicle
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/ActiveAlertDetails
+  - term: Alert Details
+    definition: 'Object declared by the contract with fields: report, active.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/AggregatedAlertDetails
+  - term: BasicAlertBase
+    definition: 'Object declared by the contract with fields: activeAlerts.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/BasicAlertBase
+  - term: AlertsReportBase
+    definition: 'Object declared by the contract with fields: reportDetails.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/AlertsReportBase
+  - term: Url
+    definition: URL format follows [RFC 3986](https://tools.ietf.org/html/rfc3986) and usually looks like this ` scheme://host[:port][/Path] `
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/Url
+  - term: Link
+    definition: A Link Object as defined by [JSONHAL#Link Object](https://tools.ietf.org/html/draft-kelly-json-hal-08#section-5).
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/Link
+  - term: CollisionDetails
+    definition: 'Object declared by the contract with fields: side, severity.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/CollisionDetails
+  - term: EngineLiquid
+    definition: 'Object declared by the contract with fields: level, temp.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/EngineLiquid
+  - term: EngineAir
+    definition: 'Object declared by the contract with fields: temp.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/EngineAir
+  - term: PowerTrainBase
+    definition: 'Object declared by the contract with fields: gmpStatus.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/PowerTrainBase
+  - term: EngineBase
+    definition: 'Object declared by the contract with fields: type, speed, gmpStatus, extension.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/EngineBase
+  - term: TripSummary
+    definition: 'Object declared by the contract with fields: tripSummaryType, numRecords, tripSummary.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/TripSummary
+  - term: PropulsionBase
+    definition: 'Vehicle propulsion system includes one or more sources of propulsion, which can be used together or alternately. During a driving
+      session, a vehicle can switch from one propulsion mode to another. This structure therefore expresses the mode of propulsion at a given
+      time stamp. * _Note: For the electric vehicle, the propulsion type will always be electric. Similarly, for thermal vehicle, it will al'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/PropulsionBase
+  - term: Distance
+    definition: 'Object declared by the contract with fields: total, parts.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/Distance
+  - term: MaintenanceBase
+    definition: Expresses next Maintenance ails. Such as number of days and the mileage (km) till the next Maintenance.
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/MaintenanceBase
+  - term: TyreStateBase
+    definition: Tire pressure for each tire.
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/TyreStateBase
+  - term: FuelAmount
+    definition: Amount of fuel remaining in the tank.>
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/FuelAmount
+  - term: Pressure
+    definition: 'Object declared by the contract with fields: value.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/Pressure
+  - term: IgnitionBase
+    definition: 'Object declared by the contract with fields: type.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/IgnitionBase
+  - term: VehicleOdometerBase
+    definition: 'Object declared by the contract with fields: mileage.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/VehicleOdometerBase
+  - term: AdasBase
+    definition: 'Object declared by the contract with fields: parkAssist, accr, lvv, rvv, aebs, afil, artiv, bsm, esp, abs, fse, sli. (3 more)'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/AdasBase
+  - term: Lights
+    definition: Expresses all light, direction (```Left```, ```Right``` ), position (```Front```, ```Rear``` ) and status (```Off```, ```On```)
+      for a category.
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/Lights
+  - term: LightingSystemBase
+    definition: Expresses the Directional, Fog and the Position vehicle lights.
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/LightingSystemBase
+  - term: BasicKinetic
+    definition: Everything related to the movement of the vehicle. Speed, acceleration..
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/BasicKinetic
+  - term: BrakingSystemBase
+    definition: 'Object declared by the contract with fields: parking.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/BrakingSystemBase
+  - term: TransmissionBase
+    definition: 'Object declared by the contract with fields: gearbox.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/TransmissionBase
+  - term: DrivingBehaviorBase
+    definition: 'Object declared by the contract with fields: mode.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/DrivingBehaviorBase
+  - term: PrivacyBase
+    definition: 'Object declared by the contract with fields: state.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/PrivacyBase
+  - term: ActiveAlertMsgEnumValues
+    definition: 'Object declared by the contract with fields: value.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/ActiveAlertMsgEnumValues
+  - term: BatteryBase
+    definition: Describe the car (with combustion engine) battery status.
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/BatteryBase
+  - term: BeltStatus
+    definition: Seat belt condition.
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/BeltStatus
+  - term: SafetyBase
+    definition: 'Object declared by the contract with fields: beltStatus, autoECallTriggering.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/SafetyBase
+  - term: WipingBladesStateBase
+    definition: 'Object declared by the contract with fields: active, speed.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/WipingBladesStateBase
+  - term: DoorsStateBase
+    definition: 'Object declared by the contract with fields: lockedState, opening.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/DoorsStateBase
+  - term: Vect2D
+    definition: This is a simple 2 (or more) number vector used to define Geometry objects.
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/Vect2D
+  - term: Geometry
+    definition: This object expresses the Geometry as specified by [rfc7946](https://tools.ietf.org/html/rfc7946#section-3.1). It is also the
+      root of the Geometry objects (Point, cicle, poygon)
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/Geometry
+  - term: NavPostionProperties
+    definition: 'Object declared by the contract with fields: address, placeid, name, category, description, phoneNumber, url.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/NavPostionProperties
+  - term: PostionProperties
+    definition: 'Object declared by the contract with fields: createdAt, heading, signalQuality, type.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/PostionProperties
+  - term: BreadCrumbsCounter
+    definition: 'Object declared by the contract with fields: pitch, roll, EncodedDataMap.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/BreadCrumbsCounter
+  - term: EcoCoachingData
+    definition: 'Object declared by the contract with fields: gearbox, score.'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/EcoCoachingData
+  - term: EcoData
+    definition: '>'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/EcoData
+  - term: BestPerformance
+    definition: '>'
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/BestPerformance
+  - term: Address
+    definition: POI' address.
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/Address
+  - term: BoundingBox
+    definition: The bounding box of the location.
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/BoundingBox
+  - term: Energy
+    definition: Describe vehicle energy supply for thermic, low emission vehicle or both.
+    tags:
+    - Object
+    source: openapi/stellantis-cloud-data-treatment-api-openapi.yml#/components/schemas/Energy

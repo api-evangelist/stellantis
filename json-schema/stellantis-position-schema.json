@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/stellantis/main/json-schema/stellantis-position-schema.json",
+  "title": "Position",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/stellantis-connected-car-b2b-api-openapi.yml#/components/schemas/Position",
+  "allOf": [
+    {
+      "required": [
+        "geometry",
+        "properties",
+        "type"
+      ],
+      "type": "object",
+      "title": "Position",
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "Feature",
+          "enum": [
+            "Feature"
+          ]
+        },
+        "geometry": {
+          "$ref": "#/$defs/Point"
+        },
+        "properties": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/CreatedAtField"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "vin": {
+                  "$ref": "#/$defs/Vin"
+                },
+                "heading": {
+                  "type": "integer",
+                  "description": "Course angle expressed in degree.",
+                  "minimum": 0,
+                  "maximum": 360
+                },
+                "signalQuality": {
+                  "type": "integer"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "Estimated",
+                    "Acquire"
+                  ]
+                },
+                "fixStatus": {
+                  "type": "string",
+                  "description": "Fix status information is only returned when position type is set to Acquire. Horizontal & altitude position can be determined in 3D fix status mode where it is only horizontal position in 2D mode.",
+                  "enum": [
+                    "2D",
+                    "3D"
+                  ]
+                }
+              }
+            }
+          ],
+          "required": [
+            "createdAt"
+          ]
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "CreatedAtField": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "description": "Date when the resource has been created.",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Geometry": {
+      "title": "Geometry",
+      "type": "object",
+      "description": "This object expresses a GeoJSON Point as specified by [rfc7946](https://tools.ietf.org/html/rfc7946#section-3.1.2).",
+      "properties": {
+        "coordinates": {
+          "title": "Coordinates",
+          "description": "Geometry coordinates"
+        }
+      },
+      "required": [
+        "coordinates",
+        "type"
+      ]
+    },
+    "Point": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/Geometry"
+        },
+        {
+          "title": "Point"
+        },
+        {
+          "description": "This object expresses a GeoJSON Point as specified by [rfc7946](https://tools.ietf.org/html/rfc7946#section-3.1.2)."
+        },
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "default": "Point",
+              "enum": [
+                "Point"
+              ]
+            },
+            "coordinates": {
+              "description": "This is a simple 2 (or more) numbers vector used to define Geometry Point objects.",
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "float",
+                "minItems": 2
+              }
+            }
+          }
+        },
+        {
+          "required": [
+            "type",
+            "coordinates"
+          ]
+        },
+        {}
+      ]
+    },
+    "Vin": {
+      "description": "Identifier of a vehicle. **Set when retrieving resource in batch mode**.",
+      "type": "string"
+    }
+  }
+}

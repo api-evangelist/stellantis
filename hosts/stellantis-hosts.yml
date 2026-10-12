@@ -1,0 +1,153 @@
+generated: '2026-10-13'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 11
+  own: 3
+  other_domain: 5
+  platform: 3
+  roles:
+  - api
+  - other
+  - portal
+  - source
+  - website
+hosts:
+- host: api-cert.groupe-psa.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: groupe-psa.com
+  role: other
+  relation: other-domain
+- host: api.mpsa.com
+  found_by:
+  - apis[]
+  types: []
+  serves:
+  - api
+  registrable_domain: mpsa.com
+  role: api
+  relation: other-domain
+- host: api.stellantis-developers.com
+  found_by:
+  - apis[]
+  - vendor-detect
+  types: []
+  serves:
+  - api
+  - api-gateway
+  vendor: aws-api-gateway
+  registrable_domain: stellantis-developers.com
+  role: api
+  relation: other-domain
+- host: api.stellantis.com
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: stellantis.com
+  role: api
+  relation: own
+- host: developer.groupe-psa.io
+  found_by:
+  - pointer
+  - apis[]
+  - vendor-detect
+  types:
+  - DeveloperPortal
+  - Documentation
+  - GettingStarted
+  - APIReference
+  - DataCatalog
+  - Support
+  serves:
+  - docs
+  - cdn
+  - hosting
+  vendor: fastly
+  registrable_domain: groupe-psa.io
+  role: portal
+  relation: other-domain
+- host: developers.stellantis.com
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - site-links
+  - namespace-probe
+  - docs-index
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - DeveloperPortal
+  - Documentation
+  - FAQ
+  serves:
+  - docs
+  - cdn
+  title: Stellantis Developers
+  status: 200
+  vendor: cloudfront
+  registrable_domain: stellantis.com
+  role: portal
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  - apis[]
+  types:
+  - GitHubOrganization
+  serves:
+  - docs
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.mobilisights.com
+  found_by:
+  - pointer
+  types:
+  - Partner
+  serves: []
+  registrable_domain: mobilisights.com
+  role: other
+  relation: other-domain
+- host: www.stellantis.com
+  found_by:
+  - pointer
+  - probed
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - Website
+  - TermsOfService
+  - PrivacyPolicy
+  serves:
+  - cdn
+  vendor: akamai
+  registrable_domain: stellantis.com
+  role: website
+  relation: own
+- host: www.youtube.com
+  found_by:
+  - pointer
+  types:
+  - YouTube
+  serves: []
+  registrable_domain: youtube.com
+  role: other
+  relation: platform

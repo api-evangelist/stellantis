@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/stellantis/main/json-schema/stellantis-data-stream-schema.json",
+  "title": "DataStream",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/_original/stellantis-data-treatment-system-openapi.yml#/components/schemas/DataStream",
+  "type": "object",
+  "required": [
+    "callbackId",
+    "data"
+  ],
+  "properties": {
+    "callbackId": {
+      "$ref": "#/$defs/ChannelId"
+    },
+    "attributes": {
+      "$ref": "#/$defs/DataStreamAttributeSet"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "telemetry": {
+          "description": "Datastream Telemetry data type. A subset of telemetries can be selected by provinding type field. If not type is set then the whole telemetries are selected.",
+          "type": "object",
+          "properties": {
+            "type": {
+              "$ref": "#/$defs/TelemetryEnum"
+            },
+            "cycle": {
+              "description": "Cycle time between two event sends expressed in seconds. This period is subject to the periodicity of its source data at vehicle level.",
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "Attribute": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Header",
+            "Body",
+            "Query"
+          ],
+          "description": "3 attributes type:\n\n|Attribute-type|Role|\n|----------|-------------|\n|Header|-Will be add as http header extension \"x-######:\"|\n|Body|-Will be simply add to event body map attribute (see monitor event definition in template document)|\n|Query|-Will set as http query parameter when invoking the Webhook|\n"
+        },
+        "key": {
+          "type": "string"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string",
+              "enum": [
+                "Vin",
+                "ChannelId",
+                "channelLabel"
+              ],
+              "description": "A value  that will be associated with the provided key as is if expressed as literal value or  contextually valued if prefixed with the dollar sign ($).  \n\n* example: Having a vin=VIN123456, the following attribute set:\n        ```\"attributes\": [\n            {\n              \"type\": \"Header\",\n              \"key\": \"X-vehicle-id\"\n              \"value\":\"$vin\"\n            }\n          ]```\n  will be valued as http header extension: \n          \n  *\"X-vehicle-id: VIN123456\"*\n"
+            }
+          ]
+        }
+      },
+      "required": [
+        "key",
+        "value",
+        "type"
+      ]
+    },
+    "BasicAttribute": {
+      "allOf": [
+        {
+          "description": "Common basic attribute. Allowing to add a key/value map to a notification event when sending.\n"
+        },
+        {
+          "$ref": "#/$defs/Attribute"
+        },
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "\n\n|type|Role|\n|----------|-------------|\n|Header|Will be add as channel header entry (x-###### for webhool channel or as data map key/value for push-notif).|\n|Body|-Will be  added to event body map.|\n",
+              "enum": [
+                "Header",
+                "Body"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "ChannelId": {
+      "type": "string",
+      "pattern": "([0-9a-fA-F]|-|_)*",
+      "description": "Uniq channel ID returned when the channel was subscribed (created) succefuly."
+    },
+    "DataStreamAttribute": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BasicAttribute"
+        },
+        {
+          "properties": {
+            "value": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "vin",
+                    "datastreamType",
+                    "fleetID"
+                  ],
+                  "description": "Set of variables that will be contextually valued and used as attribute value. To reference the variable, prefix its name with the dollar sign ($)  \n\n* Disclaimer: if the var \"vin\" is used as a query parameter, the batchnotify will be no more possible and each event will be sent through a separated request!.\n* example: Having a vin=VIN123456, the following attribute set:\n        ```\"attributes\": [\n            {\n              \"type\": \"Header\",\n              \"key\": \"X-vehicle-id\"\n              \"value\":\"$vin\"\n            }\n          ]```\n  will be valued as http header extension: \n          \n  *\"X-vehicle-id: VIN123456\"*          \n"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "DataStreamAttributeSet": {
+      "type": "array",
+      "description": "Additional attributes-set as key/value pairs wich will be added to the request when sending the event. It can be added as *header* entries or simply added to the notification event *body* (as set of key/values).\n",
+      "items": {
+        "$ref": "#/$defs/DataStreamAttribute"
+      }
+    },
+    "TelemetryEnum": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "enum": [
+          "environment",
+          "privacy",
+          "vehicle",
+          "vehicle.ignition",
+          "vehicle.location",
+          "vehicle.preconditioning",
+          "vehicle.energies",
+          "vehicle.engines",
+          "vehicle.doorsState",
+          "vehicle.battery",
+          "vehicle.safety",
+          "vehicle.odometer",
+          "vehicle.kinetic",
+          "vehicle.propulsion",
+          "vehicle.brakingSystem",
+          "vehicle.transmission",
+          "vehicle.adas",
+          "vehicle.lighting",
+          "vehicle.maintenance",
+          "vehicle.activeAlerts",
+          "vehicle.alarm.status",
+          "vehicle.alarm.trigger"
+        ]
+      }
+    }
+  }
+}

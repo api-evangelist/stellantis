@@ -1,0 +1,459 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/stellantis/main/json-schema/stellantis-remote-schema.json",
+  "title": "Remote",
+  "description": "Remote vehicle activation. ```Only one action``` (horn, precond, door...) is supported at a time.",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/stellantis-connected-car-b2b-api-openapi.yml#/components/schemas/Remote",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string"
+    },
+    "preconditioning": {
+      "$ref": "#/$defs/RemotePreconditioning"
+    },
+    "immobilization": {
+      "$ref": "#/$defs/RemoteSetImmobilization"
+    },
+    "door": {
+      "$ref": "#/$defs/RemoteDoorsState"
+    },
+    "horn": {
+      "$ref": "#/$defs/RemoteHorn"
+    },
+    "charging": {
+      "$ref": "#/$defs/RemoteCharging"
+    },
+    "stolen": {
+      "$ref": "#/$defs/RemoteStolen"
+    },
+    "lights": {
+      "$ref": "#/$defs/RemoteLights"
+    },
+    "wakeUp": {
+      "$ref": "#/$defs/RemoteWakeUp"
+    },
+    "navigation": {
+      "$ref": "#/$defs/RemoteNavigation"
+    }
+  },
+  "$defs": {
+    "BasicProgram": {
+      "type": "object",
+      "description": "Describe recurring action.",
+      "properties": {
+        "start": {
+          "type": "string",
+          "description": "The program relative (to 00:00) start time formatted using the duration format based on [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) with the schema: P[n]Y[n]M[n]DT[n]H[n]M[n]S\n\n_example_: \n\n* PT14H30M means 14H and 30Min\n"
+        },
+        "occurence": {
+          "type": "object",
+          "description": "The occurrence on the program will spread on days depending on recurrence value.\n",
+          "properties": {
+            "day": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Mon",
+                  "Tue",
+                  "Wed",
+                  "Thu",
+                  "Fri",
+                  "Sat",
+                  "Sun"
+                ]
+              }
+            }
+          },
+          "required": [
+            "day"
+          ]
+        }
+      },
+      "required": [
+        "start"
+      ]
+    },
+    "Geometry": {
+      "title": "Geometry",
+      "type": "object",
+      "description": "This object expresses a GeoJSON Point as specified by [rfc7946](https://tools.ietf.org/html/rfc7946#section-3.1.2).",
+      "properties": {
+        "coordinates": {
+          "title": "Coordinates",
+          "description": "Geometry coordinates"
+        }
+      },
+      "required": [
+        "coordinates",
+        "type"
+      ]
+    },
+    "Point": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/Geometry"
+        },
+        {
+          "title": "Point"
+        },
+        {
+          "description": "This object expresses a GeoJSON Point as specified by [rfc7946](https://tools.ietf.org/html/rfc7946#section-3.1.2)."
+        },
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "default": "Point",
+              "enum": [
+                "Point"
+              ]
+            },
+            "coordinates": {
+              "description": "This is a simple 2 (or more) numbers vector used to define Geometry Point objects.",
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "float",
+                "minItems": 2
+              }
+            }
+          }
+        },
+        {
+          "required": [
+            "type",
+            "coordinates"
+          ]
+        },
+        {}
+      ]
+    },
+    "Program": {
+      "type": "object",
+      "description": "Describe recurring action.",
+      "properties": {
+        "recurrence": {
+          "description": "Determines the recurrence of the program. \n* None: means no recurrence. \n* Daily: repeated over the week. \n",
+          "type": "string",
+          "enum": [
+            "None",
+            "Daily"
+          ],
+          "default": "Daily"
+        },
+        "start": {
+          "type": "string",
+          "description": "The program start time formatted using the duration format based on [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) with the schema: P[n]Y[n]M[n]DT[n]H[n]M[n]S\n\n_example_: \n\n* PT14H30M means 14H and 30Min\n"
+        },
+        "occurence": {
+          "type": "object",
+          "description": "The occurrence on the program will spread on days depending on recurrence value.\n",
+          "properties": {
+            "day": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Mon",
+                  "Tue",
+                  "Wed",
+                  "Thu",
+                  "Fri",
+                  "Sat",
+                  "Sun"
+                ]
+              }
+            }
+          },
+          "required": [
+            "day"
+          ]
+        }
+      },
+      "required": [
+        "start"
+      ]
+    },
+    "RemoteCharging": {
+      "type": "object",
+      "description": "Remote electric battery charging action. \n\n- ```preferences``` cannot be used in the same remote than ```schedule``` and/or ```immediate```\n",
+      "properties": {
+        "nextDelayedTime": {
+          "deprecated": true,
+          "description": "(!Depricated; use schedule instead)  Timestamp (as defined in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)) of the next battery charging time.",
+          "type": "string"
+        },
+        "schedule": {
+          "type": "object",
+          "description": "Charge scheduling. Only one of the two modes, programs or nexDelayedTime, should be provided.",
+          "properties": {
+            "nextDelayedTime": {
+              "type": "string",
+              "description": "Timestamp (as defined in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)) of the next battery charging time."
+            },
+            "programs": {
+              "description": "Scheduled charging programs list.",
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/BasicProgram"
+                  },
+                  {
+                    "properties": {
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "true if the progrm is enables, foalse otherwise."
+                      },
+                      "slot": {
+                        "type": "integer",
+                        "description": "This program number. Can only be used ONE time in the same charging program list.",
+                        "minimum": 1,
+                        "maximum": 4
+                      },
+                      "end": {
+                        "type": "string",
+                        "description": "The program relative (to 00:00) end time formatted using the duration format based on [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) with the schema: P[n]Y[n]M[n]DT[n]H[n]M[n]S\n\n_example_: \n\n* PT14H30M means 14H and 30Min\n"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "immediate": {
+          "type": "boolean",
+          "description": "Determines if the charging will start immediately(```True```) or not."
+        },
+        "preferences": {
+          "description": "Set the charging preferences.",
+          "type": "object",
+          "properties": {
+            "level": {
+              "description": "Charging power level.",
+              "type": "string",
+              "enum": [
+                "Level1",
+                "Level2",
+                "Level3",
+                "Level4",
+                "Level5"
+              ]
+            },
+            "type": {
+              "description": "Configure charging type preferences.",
+              "type": "string",
+              "enum": [
+                "Partial",
+                "Full"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "RemoteDoorsState": {
+      "type": "object",
+      "description": "Remote vehicle door (lock/unlock) state.\n_Disclaimer_ : \"Forced\" parameter is only applicable to lock the doors and is now deprecated because not applicable to all vehicles. It will be ignored to unlock the doors if set.\nSome additionnal details will be added in the callback when this parameter is considered.\n",
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "Unlocked",
+            "Locked"
+          ]
+        },
+        "forced": {
+          "deprecated": true,
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "state"
+      ]
+    },
+    "RemoteHorn": {
+      "type": "object",
+      "description": "Remote vehicle horn activation.",
+      "properties": {
+        "state": {
+          "type": "string",
+          "description": "Activate or unactivate this remote horn.",
+          "enum": [
+            "Activated",
+            "Unactivated"
+          ]
+        }
+      },
+      "required": [
+        "state"
+      ]
+    },
+    "RemoteLights": {
+      "type": "object",
+      "description": "Remote to swith on / off lights.",
+      "properties": {
+        "true": {
+          "type": "boolean",
+          "description": "Swith, if ```true```, the vehicle lights ON  or OFF (otherwise)."
+        }
+      },
+      "required": [
+        true
+      ]
+    },
+    "RemoteNavigation": {
+      "type": "object",
+      "description": "A remote to share GPS positions with the vehicle so it can navigate through those positions by driving from start (1st) to end (last) position. It can include only 9 points + the destination.",
+      "properties": {
+        "driverApproval": {
+          "description": "Whether sharing position with vehicle requires driver approval or not.",
+          "default": false,
+          "type": "boolean",
+          "deprecated": true
+        },
+        "positions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/$defs/Point"
+          }
+        }
+      },
+      "required": [
+        "positions"
+      ]
+    },
+    "RemotePreconditioning": {
+      "type": "object",
+      "description": "Remote preconditioning the vehicle.",
+      "properties": {
+        "airConditioning": {
+          "description": "At least one of the parameters must be provided.",
+          "type": "object",
+          "properties": {
+            "immediate": {
+              "type": "boolean",
+              "default": false,
+              "description": "Determines whether air conditioning will start immediately or not independently if scheduled ```programs``` are set or not. Set to \"false\" by default."
+            },
+            "programs": {
+              "description": "List of air conditioning programs to schedule on vehicle.",
+              "type": "array",
+              "items": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/Program"
+                  },
+                  {
+                    "description": "Air conditioning program to schedule on vehicle. ```Be aware about the action type (see below)```.\n\n  * _Note_:The requirement to have fields provided or not depends on the value of the fields \"actionsType\".indeed, fields are provided when:\n  \n      |<b>actionsType</b>|<b> Mandatories</b> |\n      | :------------------: | :-------------------: |\n      |- Set |<p>slot, enabled, occurence, start</p> | \n      |- Delete |slot |\n   \n  ## *The field  ```actionsType```is not mandatory and will be set to ```'Set'``` value if not provided.*\n"
+                  },
+                  {
+                    "properties": {
+                      "slot": {
+                        "type": "integer",
+                        "description": "This program number. Can only be used ONE time in the same preconditioning list.",
+                        "minimum": 1,
+                        "maximum": 4
+                      },
+                      "enabled": {
+                        "type": "boolean",
+                        "description": "Determines whether this program is enabled or not.\n"
+                      },
+                      "actionsType": {
+                        "description": "Action type to apply for this program:\n\n* Delete: Delete this air conditioning program entry. Need only the slot number of the program to remove.  \n* Set: Create a new programe o update it if existing. Need to provide all field correctly set.\n",
+                        "type": "string",
+                        "enum": [
+                          "Delete",
+                          "Set"
+                        ],
+                        "default": "Set"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "airConditioning"
+      ]
+    },
+    "RemoteSetImmobilization": {
+      "type": "object",
+      "description": "Requesting the vehicle for immobilization.",
+      "properties": {
+        "activate": {
+          "type": "boolean",
+          "description": "Set, if ```true```, the vehicle as immobilized or not (otherwise)."
+        }
+      },
+      "required": [
+        "activate"
+      ]
+    },
+    "RemoteStolen": {
+      "type": "object",
+      "description": "Remote operation to update stolen state, immobilization and configuration information. Only one attribute can be used at a time.",
+      "properties": {
+        "stolen": {
+          "description": "Declare the vehicle stolen or not (set at ```True``` to report as stolen).",
+          "type": "boolean"
+        },
+        "trackingPeriod": {
+          "type": "object",
+          "description": "Modify vehicle data collection frequency through tracking timer attributes.",
+          "properties": {
+            "running": {
+              "description": "Data collection frequency when vehicle is in stolen mode and ignition On",
+              "type": "integer",
+              "minimum": 5
+            },
+            "shutdown": {
+              "description": "Data collection frequency when vehicle is in stolen mode and ignition Off",
+              "type": "integer",
+              "minimum": 60
+            }
+          }
+        },
+        "immobilization": {
+          "type": "object",
+          "description": "Requesting the stolen vehicle for immobilization.",
+          "properties": {
+            "activate": {
+              "type": "boolean",
+              "description": "Set, if ```true```, the vehicle as immobilized or not (otherwise)."
+            }
+          },
+          "required": [
+            "activate"
+          ]
+        }
+      }
+    },
+    "RemoteWakeUp": {
+      "type": "object",
+      "description": "Remote to wake up a vehicle (so it can update its data).",
+      "properties": {
+        "action": {
+          "type": "string",
+          "default": "WakeUp",
+          "items": {
+            "enum": [
+              "WakeUp"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

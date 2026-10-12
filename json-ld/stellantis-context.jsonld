@@ -1,0 +1,876 @@
+{
+  "@context": {
+    "@vocab": "https://stellantis.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "stellantis": "https://stellantis.com/schema#",
+    "TripEnergy": "stellantis:TripEnergy",
+    "type": {
+      "@id": "stellantis:type",
+      "@type": "@id"
+    },
+    "subType": {
+      "@id": "stellantis:subType",
+      "@type": "@id"
+    },
+    "level": {
+      "@id": "stellantis:level",
+      "@type": "xsd:decimal"
+    },
+    "autonomy": {
+      "@id": "stellantis:autonomy",
+      "@type": "xsd:integer"
+    },
+    "EnergyType": "stellantis:EnergyType",
+    "EnergySubType": "stellantis:EnergySubType",
+    "VehicleCapability": "stellantis:VehicleCapability",
+    "vin": {
+      "@id": "stellantis:vin",
+      "@type": "xsd:string"
+    },
+    "brand": {
+      "@id": "stellantis:brand",
+      "@type": "xsd:string"
+    },
+    "model": {
+      "@id": "stellantis:model",
+      "@type": "xsd:string"
+    },
+    "motorization": {
+      "@id": "stellantis:motorization",
+      "@type": "xsd:string"
+    },
+    "onboardCapabilities": {
+      "@id": "stellantis:onboardCapabilities",
+      "@type": "@id"
+    },
+    "OnboardCapabilities": "stellantis:OnboardCapabilities",
+    "data": {
+      "@id": "stellantis:data",
+      "@container": "@list"
+    },
+    "remote": {
+      "@id": "stellantis:remote"
+    },
+    "Tab_Links": "stellantis:Tab_Links",
+    "self": {
+      "@id": "stellantis:self",
+      "@type": "@id"
+    },
+    "first": {
+      "@id": "stellantis:first",
+      "@type": "@id"
+    },
+    "next": {
+      "@id": "stellantis:next",
+      "@type": "@id"
+    },
+    "prev": {
+      "@id": "stellantis:prev",
+      "@type": "@id"
+    },
+    "last": {
+      "@id": "stellantis:last",
+      "@type": "@id"
+    },
+    "CollectionResult": "stellantis:CollectionResult",
+    "_links": {
+      "@id": "stellantis:_links",
+      "@type": "@id"
+    },
+    "total": {
+      "@id": "stellantis:total",
+      "@type": "xsd:integer"
+    },
+    "totalPage": {
+      "@id": "stellantis:totalPage",
+      "@type": "xsd:integer"
+    },
+    "currentPage": {
+      "@id": "stellantis:currentPage",
+      "@type": "xsd:integer"
+    },
+    "_embedded": {
+      "@id": "stellantis:_embedded"
+    },
+    "AlertReport": "stellantis:AlertReport",
+    "active": {
+      "@id": "stellantis:active",
+      "@type": "xsd:boolean"
+    },
+    "severity": {
+      "@id": "stellantis:severity",
+      "@type": "xsd:string"
+    },
+    "VehicleExtension": "stellantis:VehicleExtension",
+    "devices": {
+      "@id": "stellantis:devices",
+      "@type": "@id"
+    },
+    "callCenterNumbers": {
+      "@id": "stellantis:callCenterNumbers",
+      "@type": "@id"
+    },
+    "TelephoneNumberDetails": "stellantis:TelephoneNumberDetails",
+    "callType": {
+      "@id": "stellantis:callType",
+      "@type": "xsd:string"
+    },
+    "phoneNumber": {
+      "@id": "stellantis:phoneNumber",
+      "@type": "xsd:string"
+    },
+    "Devices": "stellantis:Devices",
+    "Device": {
+      "@id": "stellantis:Device",
+      "@container": "@list"
+    },
+    "DeviceDetails": "stellantis:DeviceDetails",
+    "key": {
+      "@id": "stellantis:key",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "stellantis:value",
+      "@type": "xsd:string"
+    },
+    "GeoPosition": "stellantis:GeoPosition",
+    "geometry": {
+      "@id": "stellantis:geometry",
+      "@type": "@id"
+    },
+    "PositionProperties": "stellantis:PositionProperties",
+    "heading": {
+      "@id": "stellantis:heading",
+      "@type": "xsd:decimal"
+    },
+    "signalQuality": {
+      "@id": "stellantis:signalQuality",
+      "@type": "xsd:decimal"
+    },
+    "fixStatus": {
+      "@id": "stellantis:fixStatus",
+      "@type": "xsd:string"
+    },
+    "JeepTrailRequest": "stellantis:JeepTrailRequest",
+    "position": {
+      "@id": "stellantis:position"
+    },
+    "JeepTrailsPoiInfo": "stellantis:JeepTrailsPoiInfo",
+    "name": {
+      "@id": "stellantis:name",
+      "@type": "xsd:string"
+    },
+    "phone": {
+      "@id": "stellantis:phone",
+      "@type": "xsd:string"
+    },
+    "categorySet": {
+      "@id": "stellantis:categorySet",
+      "@container": "@list"
+    },
+    "categories": {
+      "@id": "stellantis:categories",
+      "@container": "@list"
+    },
+    "classifications": {
+      "@id": "stellantis:classifications"
+    },
+    "TipsContainer": "stellantis:TipsContainer",
+    "acceleration": {
+      "@id": "stellantis:acceleration",
+      "@type": "@id"
+    },
+    "deceleration": {
+      "@id": "stellantis:deceleration",
+      "@type": "@id"
+    },
+    "speed": {
+      "@id": "stellantis:speed",
+      "@type": "@id"
+    },
+    "gear": {
+      "@id": "stellantis:gear",
+      "@type": "@id"
+    },
+    "regeneration": {
+      "@id": "stellantis:regeneration",
+      "@type": "@id"
+    },
+    "TipContainer": "stellantis:TipContainer",
+    "definition": {
+      "@id": "stellantis:definition",
+      "@type": "xsd:string"
+    },
+    "assessment": {
+      "@id": "stellantis:assessment",
+      "@type": "xsd:string"
+    },
+    "tips": {
+      "@id": "stellantis:tips",
+      "@container": "@list"
+    },
+    "EditWaypointBreadcrumb": "stellantis:EditWaypointBreadcrumb",
+    "isWayPoint": {
+      "@id": "stellantis:isWayPoint",
+      "@type": "xsd:boolean"
+    },
+    "wayPointName": {
+      "@id": "stellantis:wayPointName",
+      "@type": "xsd:string"
+    },
+    "wayPointType1": {
+      "@id": "stellantis:wayPointType1",
+      "@type": "xsd:string"
+    },
+    "wayPointType2": {
+      "@id": "stellantis:wayPointType2",
+      "@type": "xsd:string"
+    },
+    "AlertDetailsBase": "stellantis:AlertDetailsBase",
+    "report": {
+      "@id": "stellantis:report",
+      "@type": "@id"
+    },
+    "AlertReportDetails": "stellantis:AlertReportDetails",
+    "reportDetails": {
+      "@id": "stellantis:reportDetails",
+      "@container": "@list"
+    },
+    "ActiveAlertDetails": "stellantis:ActiveAlertDetails",
+    "activeAlerts": {
+      "@id": "stellantis:activeAlerts",
+      "@container": "@list"
+    },
+    "AggregatedAlertDetails": "stellantis:AggregatedAlertDetails",
+    "BasicAlertBase": "stellantis:BasicAlertBase",
+    "AlertsReportBase": "stellantis:AlertsReportBase",
+    "Link": "stellantis:Link",
+    "href": {
+      "@id": "stellantis:href",
+      "@type": "@id"
+    },
+    "templated": {
+      "@id": "stellantis:templated",
+      "@type": "xsd:boolean"
+    },
+    "deprecation": {
+      "@id": "stellantis:deprecation"
+    },
+    "title": {
+      "@id": "stellantis:title",
+      "@type": "xsd:string"
+    },
+    "profile": {
+      "@id": "stellantis:profile",
+      "@type": "xsd:string"
+    },
+    "hreflang": {
+      "@id": "stellantis:hreflang",
+      "@type": "xsd:string"
+    },
+    "CollisionDetails": "stellantis:CollisionDetails",
+    "side": {
+      "@id": "stellantis:side",
+      "@type": "xsd:string"
+    },
+    "EngineLiquid": "stellantis:EngineLiquid",
+    "temp": {
+      "@id": "stellantis:temp",
+      "@type": "xsd:decimal"
+    },
+    "EngineAir": "stellantis:EngineAir",
+    "PowerTrainBase": "stellantis:PowerTrainBase",
+    "gmpStatus": {
+      "@id": "stellantis:gmpStatus",
+      "@type": "xsd:string"
+    },
+    "EngineBase": "stellantis:EngineBase",
+    "extension": {
+      "@id": "stellantis:extension"
+    },
+    "TripSummary": "stellantis:TripSummary",
+    "tripSummaryType": {
+      "@id": "stellantis:tripSummaryType",
+      "@type": "xsd:string"
+    },
+    "numRecords": {
+      "@id": "stellantis:numRecords",
+      "@type": "xsd:integer"
+    },
+    "tripSummary": {
+      "@id": "stellantis:tripSummary",
+      "@type": "@id"
+    },
+    "PropulsionBase": "stellantis:PropulsionBase",
+    "Distance": "stellantis:Distance",
+    "parts": {
+      "@id": "stellantis:parts",
+      "@container": "@list"
+    },
+    "MaintenanceBase": "stellantis:MaintenanceBase",
+    "daysBeforeMaintenance": {
+      "@id": "stellantis:daysBeforeMaintenance",
+      "@type": "xsd:integer"
+    },
+    "mileageBeforeMaintenance": {
+      "@id": "stellantis:mileageBeforeMaintenance",
+      "@type": "xsd:integer"
+    },
+    "TyreStateBase": "stellantis:TyreStateBase",
+    "id": {
+      "@id": "stellantis:id",
+      "@type": "xsd:string"
+    },
+    "pressure": {
+      "@id": "stellantis:pressure",
+      "@type": "@id"
+    },
+    "status": {
+      "@id": "stellantis:status",
+      "@type": "xsd:string"
+    },
+    "FuelAmount": "stellantis:FuelAmount",
+    "Pressure": "stellantis:Pressure",
+    "IgnitionBase": "stellantis:IgnitionBase",
+    "VehicleOdometerBase": "stellantis:VehicleOdometerBase",
+    "mileage": {
+      "@id": "stellantis:mileage",
+      "@type": "xsd:decimal"
+    },
+    "AdasBase": "stellantis:AdasBase",
+    "parkAssist": {
+      "@id": "stellantis:parkAssist"
+    },
+    "accr": {
+      "@id": "stellantis:accr",
+      "@type": "xsd:string"
+    },
+    "lvv": {
+      "@id": "stellantis:lvv",
+      "@type": "xsd:boolean"
+    },
+    "rvv": {
+      "@id": "stellantis:rvv",
+      "@type": "xsd:string"
+    },
+    "aebs": {
+      "@id": "stellantis:aebs",
+      "@type": "xsd:string"
+    },
+    "afil": {
+      "@id": "stellantis:afil",
+      "@type": "xsd:string"
+    },
+    "artiv": {
+      "@id": "stellantis:artiv",
+      "@type": "xsd:string"
+    },
+    "bsm": {
+      "@id": "stellantis:bsm",
+      "@type": "xsd:string"
+    },
+    "esp": {
+      "@id": "stellantis:esp",
+      "@type": "xsd:boolean"
+    },
+    "abs": {
+      "@id": "stellantis:abs",
+      "@type": "xsd:boolean"
+    },
+    "fse": {
+      "@id": "stellantis:fse",
+      "@type": "xsd:boolean"
+    },
+    "sli": {
+      "@id": "stellantis:sli",
+      "@type": "xsd:integer"
+    },
+    "rlka": {
+      "@id": "stellantis:rlka",
+      "@type": "xsd:string"
+    },
+    "llka": {
+      "@id": "stellantis:llka",
+      "@type": "xsd:string"
+    },
+    "rgi": {
+      "@id": "stellantis:rgi",
+      "@type": "xsd:string"
+    },
+    "LightingSystemBase": "stellantis:LightingSystemBase",
+    "turn": {
+      "@id": "stellantis:turn",
+      "@type": "@id"
+    },
+    "fog": {
+      "@id": "stellantis:fog",
+      "@type": "@id"
+    },
+    "BasicKinetic": "stellantis:BasicKinetic",
+    "moving": {
+      "@id": "stellantis:moving",
+      "@type": "xsd:boolean"
+    },
+    "BrakingSystemBase": "stellantis:BrakingSystemBase",
+    "parking": {
+      "@id": "stellantis:parking",
+      "@type": "xsd:boolean"
+    },
+    "TransmissionBase": "stellantis:TransmissionBase",
+    "gearbox": {
+      "@id": "stellantis:gearbox"
+    },
+    "DrivingBehaviorBase": "stellantis:DrivingBehaviorBase",
+    "mode": {
+      "@id": "stellantis:mode",
+      "@type": "@id"
+    },
+    "PrivacyBase": "stellantis:PrivacyBase",
+    "state": {
+      "@id": "stellantis:state",
+      "@type": "xsd:string"
+    },
+    "ActiveAlertMsgEnumValues": "stellantis:ActiveAlertMsgEnumValues",
+    "BatteryBase": "stellantis:BatteryBase",
+    "voltage": {
+      "@id": "stellantis:voltage",
+      "@type": "xsd:decimal"
+    },
+    "current": {
+      "@id": "stellantis:current",
+      "@type": "xsd:decimal"
+    },
+    "indicator": {
+      "@id": "stellantis:indicator",
+      "@type": "xsd:string"
+    },
+    "BeltStatus": "stellantis:BeltStatus",
+    "belt": {
+      "@id": "stellantis:belt",
+      "@type": "xsd:string"
+    },
+    "SafetyBase": "stellantis:SafetyBase",
+    "beltStatus": {
+      "@id": "stellantis:beltStatus",
+      "@container": "@list"
+    },
+    "autoECallTriggering": {
+      "@id": "stellantis:autoECallTriggering",
+      "@type": "xsd:string"
+    },
+    "WipingBladesStateBase": "stellantis:WipingBladesStateBase",
+    "DoorsStateBase": "stellantis:DoorsStateBase",
+    "lockedState": {
+      "@id": "stellantis:lockedState",
+      "@container": "@list"
+    },
+    "opening": {
+      "@id": "stellantis:opening",
+      "@container": "@list"
+    },
+    "Geometry": "stellantis:Geometry",
+    "coordinates": {
+      "@id": "stellantis:coordinates"
+    },
+    "NavPostionProperties": "stellantis:NavPostionProperties",
+    "address": {
+      "@id": "stellantis:address",
+      "@type": "@id"
+    },
+    "placeid": {
+      "@id": "stellantis:placeid",
+      "@type": "xsd:integer"
+    },
+    "category": {
+      "@id": "stellantis:category",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "stellantis:description",
+      "@type": "xsd:string"
+    },
+    "url": {
+      "@id": "stellantis:url",
+      "@type": "xsd:string"
+    },
+    "PostionProperties": "stellantis:PostionProperties",
+    "createdAt": {
+      "@id": "stellantis:createdAt",
+      "@type": "xsd:dateTime"
+    },
+    "BreadCrumbsCounter": "stellantis:BreadCrumbsCounter",
+    "pitch": {
+      "@id": "stellantis:pitch",
+      "@type": "xsd:decimal"
+    },
+    "roll": {
+      "@id": "stellantis:roll",
+      "@type": "xsd:decimal"
+    },
+    "EncodedDataMap": {
+      "@id": "stellantis:EncodedDataMap",
+      "@type": "xsd:string"
+    },
+    "EcoCoachingData": "stellantis:EcoCoachingData",
+    "score": {
+      "@id": "stellantis:score"
+    },
+    "EcoData": "stellantis:EcoData",
+    "averageScore": {
+      "@id": "stellantis:averageScore",
+      "@type": "xsd:decimal"
+    },
+    "Profile": {
+      "@id": "stellantis:Profile",
+      "@type": "xsd:string"
+    },
+    "BestPerformance": "stellantis:BestPerformance",
+    "maxRoll": {
+      "@id": "stellantis:maxRoll",
+      "@type": "xsd:decimal"
+    },
+    "maxPitch": {
+      "@id": "stellantis:maxPitch",
+      "@type": "xsd:decimal"
+    },
+    "maxAltitude": {
+      "@id": "stellantis:maxAltitude",
+      "@type": "xsd:decimal"
+    },
+    "Address": "stellantis:Address",
+    "houseNumber": {
+      "@id": "stellantis:houseNumber",
+      "@type": "xsd:string"
+    },
+    "postalCode": {
+      "@id": "stellantis:postalCode",
+      "@type": "xsd:integer"
+    },
+    "streetName": {
+      "@id": "stellantis:streetName",
+      "@type": "xsd:string"
+    },
+    "cityName": {
+      "@id": "stellantis:cityName",
+      "@type": "xsd:string"
+    },
+    "countryName": {
+      "@id": "stellantis:countryName",
+      "@type": "xsd:string"
+    },
+    "provinceName": {
+      "@id": "stellantis:provinceName",
+      "@type": "xsd:string"
+    },
+    "BoundingBox": "stellantis:BoundingBox",
+    "northEast": {
+      "@id": "stellantis:northEast",
+      "@type": "xsd:string"
+    },
+    "southWest": {
+      "@id": "stellantis:southWest",
+      "@type": "xsd:string"
+    },
+    "entity": {
+      "@id": "stellantis:entity",
+      "@type": "xsd:string"
+    },
+    "Energy": "stellantis:Energy",
+    "hvacPwrUsageDisp": {
+      "@id": "stellantis:hvacPwrUsageDisp",
+      "@type": "xsd:string"
+    },
+    "EnergyBase": "stellantis:EnergyBase",
+    "Consumption": "stellantis:Consumption",
+    "consumption": {
+      "@id": "stellantis:consumption",
+      "@type": "xsd:decimal"
+    },
+    "CompositFuelEnergyConsumption": "stellantis:CompositFuelEnergyConsumption",
+    "instant": {
+      "@id": "stellantis:instant",
+      "@type": "xsd:decimal"
+    },
+    "CompositElectricEnergyConsumption": "stellantis:CompositElectricEnergyConsumption",
+    "EnergyCharging": "stellantis:EnergyCharging",
+    "plugged": {
+      "@id": "stellantis:plugged",
+      "@type": "xsd:boolean"
+    },
+    "remainingTime": {
+      "@id": "stellantis:remainingTime",
+      "@type": "xsd:string"
+    },
+    "chargingSpeed": {
+      "@id": "stellantis:chargingSpeed",
+      "@type": "xsd:integer"
+    },
+    "chargingMode": {
+      "@id": "stellantis:chargingMode",
+      "@type": "xsd:string"
+    },
+    "programs": {
+      "@id": "stellantis:programs",
+      "@container": "@list"
+    },
+    "schedule": {
+      "@id": "stellantis:schedule"
+    },
+    "settings": {
+      "@id": "stellantis:settings"
+    },
+    "EnergyBattery": "stellantis:EnergyBattery",
+    "load": {
+      "@id": "stellantis:load"
+    },
+    "health": {
+      "@id": "stellantis:health"
+    },
+    "EnergyBatteryBase": "stellantis:EnergyBatteryBase",
+    "HealthElectricEnergy": "stellantis:HealthElectricEnergy",
+    "capacity": {
+      "@id": "stellantis:capacity",
+      "@type": "xsd:integer"
+    },
+    "resistance": {
+      "@id": "stellantis:resistance",
+      "@type": "xsd:integer"
+    },
+    "LoadElectricEnergy": "stellantis:LoadElectricEnergy",
+    "residual": {
+      "@id": "stellantis:residual",
+      "@type": "xsd:integer"
+    },
+    "BasicProgram": "stellantis:BasicProgram",
+    "start": {
+      "@id": "stellantis:start",
+      "@type": "xsd:string"
+    },
+    "enabled": {
+      "@id": "stellantis:enabled",
+      "@type": "xsd:boolean"
+    },
+    "Program": "stellantis:Program",
+    "occurrence": {
+      "@id": "stellantis:occurrence"
+    },
+    "PrecondProgramTemp": "stellantis:PrecondProgramTemp",
+    "TimeTriggerEntry": "stellantis:TimeTriggerEntry",
+    "recurrence": {
+      "@id": "stellantis:recurrence",
+      "@type": "xsd:string"
+    },
+    "duration": {
+      "@id": "stellantis:duration",
+      "@type": "xsd:string"
+    },
+    "PreconditioningBase": "stellantis:PreconditioningBase",
+    "airConditioning": {
+      "@id": "stellantis:airConditioning"
+    },
+    "ChargingSessionEnergy": "stellantis:ChargingSessionEnergy",
+    "batteryPower": {
+      "@id": "stellantis:batteryPower",
+      "@type": "xsd:integer"
+    },
+    "chargePreferenceRate": {
+      "@id": "stellantis:chargePreferenceRate",
+      "@type": "xsd:string"
+    },
+    "chargingType": {
+      "@id": "stellantis:chargingType",
+      "@type": "xsd:string"
+    },
+    "powerType": {
+      "@id": "stellantis:powerType",
+      "@type": "xsd:string"
+    },
+    "ChargingSession": "stellantis:ChargingSession",
+    "end": {
+      "@id": "stellantis:end",
+      "@type": "xsd:dateTime"
+    },
+    "startEnergy": {
+      "@id": "stellantis:startEnergy",
+      "@type": "@id"
+    },
+    "endEnergy": {
+      "@id": "stellantis:endEnergy",
+      "@type": "@id"
+    },
+    "finishReason": {
+      "@id": "stellantis:finishReason",
+      "@type": "xsd:string"
+    },
+    "segments": {
+      "@id": "stellantis:segments",
+      "@container": "@list"
+    },
+    "gain": {
+      "@id": "stellantis:gain"
+    },
+    "environment": {
+      "@id": "stellantis:environment"
+    },
+    "ChargingSessionSegment": "stellantis:ChargingSessionSegment",
+    "chargingRate": {
+      "@id": "stellantis:chargingRate",
+      "@type": "xsd:integer"
+    },
+    "chargingPowerLevel": {
+      "@id": "stellantis:chargingPowerLevel",
+      "@type": "xsd:integer"
+    },
+    "offset": {
+      "@id": "stellantis:offset",
+      "@type": "xsd:integer"
+    },
+    "chargeSchedules": "stellantis:chargeSchedules",
+    "failureCause": {
+      "@id": "stellantis:failureCause",
+      "@type": "xsd:string"
+    },
+    "Environment": "stellantis:Environment",
+    "luminosity": {
+      "@id": "stellantis:luminosity",
+      "@type": "@id"
+    },
+    "air": {
+      "@id": "stellantis:air",
+      "@type": "@id"
+    },
+    "EnvironmentBase": "stellantis:EnvironmentBase",
+    "AirBase": "stellantis:AirBase",
+    "GenericSegment": "stellantis:GenericSegment",
+    "TripEnv": "stellantis:TripEnv",
+    "lightDrive": {
+      "@id": "stellantis:lightDrive"
+    },
+    "TripStatistics": "stellantis:TripStatistics",
+    "distance": {
+      "@id": "stellantis:distance",
+      "@type": "@id"
+    },
+    "energyConsumptions": {
+      "@id": "stellantis:energyConsumptions",
+      "@container": "@list"
+    },
+    "kinetic": {
+      "@id": "stellantis:kinetic",
+      "@type": "@id"
+    },
+    "env": {
+      "@id": "stellantis:env",
+      "@type": "@id"
+    },
+    "ecoCoaching": {
+      "@id": "stellantis:ecoCoaching",
+      "@type": "@id"
+    },
+    "drivingMode": {
+      "@id": "stellantis:drivingMode"
+    },
+    "EcoCoaching": "stellantis:EcoCoaching",
+    "totalScore": {
+      "@id": "stellantis:totalScore",
+      "@type": "xsd:decimal"
+    },
+    "EcoCoachingSegement": "stellantis:EcoCoachingSegement",
+    "TripKinetic": "stellantis:TripKinetic",
+    "TripState": "stellantis:TripState",
+    "done": {
+      "@id": "stellantis:done",
+      "@type": "xsd:boolean"
+    },
+    "faults": {
+      "@id": "stellantis:faults",
+      "@container": "@list"
+    },
+    "LifecycleState": "stellantis:LifecycleState",
+    "TripLocation": "stellantis:TripLocation",
+    "startPosition": {
+      "@id": "stellantis:startPosition",
+      "@type": "@id"
+    },
+    "stopPosition": {
+      "@id": "stellantis:stopPosition",
+      "@type": "@id"
+    },
+    "PropulsionType": "stellantis:PropulsionType",
+    "link": "stellantis:link",
+    "tab_links": "stellantis:tab_links",
+    "ChargingStatusEnum": "stellantis:ChargingStatusEnum",
+    "ChargePreferenceRateEnum": "stellantis:ChargePreferenceRateEnum",
+    "AlertMsgEnum": "stellantis:AlertMsgEnum",
+    "sortenum": "stellantis:sortenum",
+    "TripPositionCtxKinetic": "stellantis:TripPositionCtxKinetic",
+    "TripStatsKineticEnum": "stellantis:TripStatsKineticEnum",
+    "LifeCycleStatesEnum": "stellantis:LifeCycleStatesEnum",
+    "TripStateEnum": "stellantis:TripStateEnum",
+    "DrivingModeEnum": "stellantis:DrivingModeEnum",
+    "xError": "stellantis:xError",
+    "debug": {
+      "@id": "stellantis:debug",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "stellantis:message",
+      "@type": "xsd:string"
+    },
+    "501RemoteError": "stellantis:501RemoteError",
+    "FeatureNotSupportedError": "stellantis:FeatureNotSupportedError",
+    "DataNotFoundError": "stellantis:DataNotFoundError",
+    "code": {
+      "@id": "stellantis:code",
+      "@type": "xsd:integer"
+    },
+    "UpdatedAtField": "stellantis:UpdatedAtField",
+    "updatedAt": {
+      "@id": "stellantis:updatedAt",
+      "@type": "xsd:dateTime"
+    },
+    "CreatedAtField": "stellantis:CreatedAtField",
+    "Attribute": "stellantis:Attribute",
+    "ChannelAttribute": "stellantis:ChannelAttribute",
+    "PushNotifAttribute": "stellantis:PushNotifAttribute",
+    "ChannelAttributes": "stellantis:ChannelAttributes",
+    "pushnotif": {
+      "@id": "stellantis:pushnotif",
+      "@container": "@list"
+    },
+    "webhook": {
+      "@id": "stellantis:webhook",
+      "@container": "@list"
+    },
+    "websocket": {
+      "@id": "stellantis:websocket",
+      "@container": "@list"
+    },
+    "RemoteAttribute": "stellantis:RemoteAttribute",
+    "MonitorAttribute": "stellantis:MonitorAttribute",
+    "PushNotif": "stellantis:PushNotif",
+    "attributes": {
+      "@id": "stellantis:attributes",
+      "@type": "@id"
+    },
+    "Websocket": "stellantis:Websocket",
+    "target": {
+      "@id": "stellantis:target",
+      "@type": "@id"
+    },
+    "Webhook": "stellantis:Webhook"
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Stellantis API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Stellantis's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-13) from openapi/stellantis-cloud-data-treatment-api-openapi.yml, openapi/stellantis-cloud-docg-device-management-api-openapi.yml, openapi/stellantis-cloud-notification-center-api-openapi.yml.",
+  "dcterms:created": "2026-10-13",
+  "dcterms:source": [
+    "openapi/stellantis-cloud-data-treatment-api-openapi.yml",
+    "openapi/stellantis-cloud-docg-device-management-api-openapi.yml",
+    "openapi/stellantis-cloud-notification-center-api-openapi.yml",
+    "openapi/stellantis-cloud-platform-notification-webhooks-openapi.yml",
+    "openapi/stellantis-connected-car-b2b-api-openapi.yml"
+  ]
+}

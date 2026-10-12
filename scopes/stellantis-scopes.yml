@@ -1,0 +1,339 @@
+generated: '2026-10-13'
+method: derived
+source: openapi/stellantis-cloud-data-treatment-api-openapi.yml, openapi/stellantis-connected-car-b2c-api-openapi.yml
+schemes:
+- name: api_oauth
+  source: openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  flows:
+  - flow: implicit
+    authorizationUrl: https://api.mpsa.com/api/connectedcar/v2/oauth/authorize
+  description: This API uses OAuth 2 with the implicit grant flow. [More info](https://api.example.com/docs/auth)
+- name: api_oauth
+  source: openapi/stellantis-connected-car-b2c-api-openapi.yml
+  flows:
+  - flow: implicit
+    authorizationUrl: https://api.mpsa.com/api/connectedcar/v2/oauth/authorize
+  description: This API uses OAuth 2 with the implicit grant flow. [More info](https://api.example.com/docs/auth)
+scopes:
+- scope: channel
+  description: read calback related data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: channel:write
+  description: create, modify or delete channels
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:alert
+  description: Read alert related data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml
+- scope: data:collision
+  description: read Collision related data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml
+- scope: data:position
+  description: Read vehicle Location (position) data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml
+- scope: data:telemetry
+  description: read full telemetry data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml
+- scope: data:telemetry:environment
+  description: read telemetry environment data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:privacy
+  description: read telemetry privacy data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle
+  description: read full telemetry vehicle data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:adas
+  description: read telemetry vehicle ADAS data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:alarm
+  description: read telemetry alarm data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:alert
+  description: read telemetry alert data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:battery
+  description: read telemetry vehicle battery status data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:braking
+  description: read telemetry vehicle braking system data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:doorsState
+  description: read telemetry vehicle doors state data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:drivingBehavior
+  description: read telemetry vehicle driver bihavior data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:energies
+  description: read telemetry vehicle energies data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:engines
+  description: read telemetry vehicle engines data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:ignition
+  description: read telemetry vehicle ignition data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:kinetic
+  description: read telemetry vehicle kinetic data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:lightingSystem
+  description: read telemetry vehicle lighting system data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:location
+  description: read vehicle location data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:maintenance
+  description: read telemetry vehicle maintenance data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:odometer
+  description: read telemetry vehicle odometer data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:preconditioning
+  description: read telemetry vehicle preconditioning system data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:propulsion
+  description: read telemetry vehicle propulsion mode
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:safety
+  description: read telemetry vehicle safety data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:transmission
+  description: read telemetry vehicle transmission data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:tyreState
+  description: read telemetry vehicle tyre data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:telemetry:vehicle:wipingBlades
+  description: read telemetry vehicle wiping blades data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:trip
+  description: read Trip related data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml
+- scope: data:vehicle
+  description: read vehicle attributes data
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: data:vehicle:devices:pnc
+  sources:
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml
+- scope: monitor
+  description: read monitors
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: monitor:write
+  description: create, modify or delete Monitors
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: remote
+  description: read full remote state(pending & history)
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: remote:charging
+  description: read charging remote (pending & history)
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: remote:charging:write
+  description: send charging remote to vehicle
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml
+- scope: remote:door:write
+  description: Read & send door remote (pending & history)
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml
+- scope: remote:horn
+  description: read horn remote (pending & history)
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: remote:horn:write
+  description: send a horn remote to vehicle
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml
+- scope: remote:lights
+  description: read lights remote (pending & history)
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: remote:lights:write
+  description: send remote to switch on/off vehicle lights
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml
+- scope: remote:locking
+  description: read door  remote (pending & history)
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: remote:locking:write
+  description: send a door remote to vehicle
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: remote:navigation:write
+  description: Read & send navigation remote (pending & history)
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml
+- scope: remote:onboardPersonalData
+  description: read onboardPersonalData remote (pending & history)
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: remote:onboardPersonalData:write
+  description: send an onboardPersonalData remote to vehicle
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: remote:preconditioning
+  description: read preconditioning remote (pending & history)
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: remote:preconditioning:write
+  description: send a preconditioning remote to vehicle
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml
+- scope: remote:wakeUp
+  description: read wakeUp remote (pending & history)
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: remote:wakeUp:write
+  description: send remote to wakeUp vehicle
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+- scope: remote:wakeup:write
+  description: Read & send weackup remote (pending & history)
+  flows:
+  - implicit
+  sources:
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml

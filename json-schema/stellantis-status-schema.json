@@ -1,0 +1,1772 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/stellantis/main/json-schema/stellantis-status-schema.json",
+  "title": "Status",
+  "x-generated": "2026-10-13",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/stellantis-connected-car-b2b-api-openapi.yml#/components/schemas/Status",
+  "allOf": [
+    {
+      "$ref": "#/$defs/CreatedAtField"
+    },
+    {
+      "$ref": "#/$defs/UpdatedAtField"
+    },
+    {
+      "title": "Vehicle status response",
+      "description": "Describe the latest status of the vehicle",
+      "type": "object",
+      "properties": {
+        "_links": {
+          "type": "object",
+          "properties": {
+            "self": {
+              "$ref": "#/$defs/Link"
+            },
+            "vehicle": {
+              "$ref": "#/$defs/Link"
+            },
+            "fleet": {
+              "$ref": "#/$defs/Link"
+            }
+          },
+          "required": [
+            "self"
+          ]
+        },
+        "vin": {
+          "$ref": "#/$defs/Vin"
+        },
+        "ignition": {
+          "$ref": "#/$defs/Ignition"
+        },
+        "lastPosition": {
+          "$ref": "#/$defs/Position"
+        },
+        "preconditioning": {
+          "$ref": "#/$defs/Preconditioning"
+        },
+        "energies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Energy"
+          }
+        },
+        "engines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Engine"
+          }
+        },
+        "transmission": {
+          "$ref": "#/$defs/Transmission"
+        },
+        "powertrain": {
+          "$ref": "#/$defs/Powertrain"
+        },
+        "adas": {
+          "$ref": "#/$defs/Adas"
+        },
+        "doorsState": {
+          "$ref": "#/$defs/DoorsState"
+        },
+        "privacy": {
+          "$ref": "#/$defs/Privacy"
+        },
+        "battery": {
+          "$ref": "#/$defs/Battery"
+        },
+        "service": {
+          "$ref": "#/$defs/ServiceType"
+        },
+        "safety": {
+          "$ref": "#/$defs/Safety"
+        },
+        "odometer": {
+          "$ref": "#/$defs/VehicleOdometer"
+        },
+        "kinetic": {
+          "$ref": "#/$defs/Kinetic"
+        },
+        "environment": {
+          "$ref": "#/$defs/Environment"
+        },
+        "drivingBehavior": {
+          "$ref": "#/$defs/DrivingBehavior"
+        },
+        "wipingBlades": {
+          "$ref": "#/$defs/WipingBladesState"
+        },
+        "lightingSystem": {
+          "$ref": "#/$defs/LightingSystem"
+        },
+        "alarm": {
+          "$ref": "#/$defs/VehicleStatusAlarm"
+        },
+        "stolen": {
+          "$ref": "#/$defs/StolenObj"
+        },
+        "_embedded": {
+          "type": "object",
+          "properties": {
+            "extension": {
+              "$ref": "#/$defs/Extension"
+            }
+          }
+        }
+      },
+      "required": [
+        "_links",
+        "createdAt",
+        "vin"
+      ]
+    }
+  ],
+  "$defs": {
+    "Adas": {
+      "type": "object",
+      "properties": {
+        "parkAssist": {
+          "type": "object",
+          "properties": {
+            "front": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Fault",
+                  "DriverInhibition",
+                  "Active",
+                  "Wait",
+                  "OutOfService"
+                ]
+              }
+            },
+            "rear": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Fault",
+                  "DriverInhibition",
+                  "TrailerInhibition",
+                  "Active",
+                  "Wait",
+                  "OutOfService"
+                ]
+              }
+            }
+          }
+        },
+        "accr": {
+          "description": "Adaptive Cruise Control Regulation",
+          "type": "string",
+          "enum": [
+            "Activated",
+            "Fault",
+            "Hold",
+            "HoldWithOverSpeeding",
+            false,
+            "OverSpeedingByPedalPress",
+            "StandBy"
+          ]
+        },
+        "lvv": {
+          "type": "boolean"
+        },
+        "rvv": {
+          "description": "Advanced Speed Regulator",
+          "type": "string",
+          "enum": [
+            false,
+            "NoBestFit",
+            "BestFitInProgress",
+            "BestFitMax",
+            "BestFitMin",
+            "BestFitDeactivated",
+            "AutoDeactivated",
+            "OverflowSpeedConsign",
+            "LackOfVisibilityRadar",
+            "LearningRadar",
+            "Deactivated",
+            "LimitSetting"
+          ]
+        },
+        "aebs": {
+          "description": "Advanced Emergency Braking System",
+          "type": "string",
+          "enum": [
+            false,
+            "Fixed",
+            "OnFlashing"
+          ]
+        },
+        "afil": {
+          "description": "Lane Departure Warning System",
+          "type": "string",
+          "enum": [
+            "FlashingFault",
+            "FlashingWarning",
+            false,
+            "OnFixed"
+          ]
+        },
+        "artiv": {
+          "description": "Respect of inter vehicle time assist (ARTIV)",
+          "type": "string",
+          "enum": [
+            "NotSelected",
+            "Selected",
+            "Unavailable"
+          ],
+          "default": "Unavailable"
+        },
+        "bsm": {
+          "description": "Blind Spot Monitoring",
+          "type": "string",
+          "enum": [
+            "Active",
+            "Inactive",
+            "Disabled",
+            "Fault"
+          ]
+        },
+        "esp": {
+          "description": "Electronic Stability Program",
+          "type": "boolean"
+        },
+        "abs": {
+          "description": "Anti-lock braking system",
+          "type": "boolean"
+        },
+        "fse": {
+          "description": "Electric brake service",
+          "type": "boolean"
+        },
+        "sli": {
+          "description": "Speed Limit Information (expressed in km/h)",
+          "type": "integer"
+        },
+        "rlka": {
+          "description": "Right Lane Keeping Assist",
+          "type": "string",
+          "enum": [
+            "Authorized",
+            "CorrectionInProgress",
+            "NotAuthorized",
+            "NotSelected"
+          ]
+        },
+        "llka": {
+          "description": "Left Lane Keeping Assist",
+          "type": "string",
+          "enum": [
+            "Authorized",
+            "CorrectionInProgress",
+            "NotAuthorized",
+            "NotSelected"
+          ]
+        },
+        "rgi": {
+          "description": "Recommended gear indicator",
+          "type": "string",
+          "enum": [
+            "None",
+            "Up",
+            "Down",
+            "UpDown"
+          ]
+        }
+      }
+    },
+    "Air": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/AirBase"
+        }
+      ],
+      "required": [
+        "createdAt"
+      ]
+    },
+    "AirBase": {
+      "type": "object",
+      "properties": {
+        "temp": {
+          "description": "Outside air temperature in Celsius degrees",
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "Alarm": {
+      "type": "object",
+      "title": "Vehicle Alarm",
+      "description": "Describes the vehicle alarm status or trigger. Only one is present.",
+      "properties": {
+        "trigger": {
+          "$ref": "#/$defs/AlarmTrigger"
+        },
+        "status": {
+          "$ref": "#/$defs/AlarmStatus"
+        }
+      }
+    },
+    "AlarmStatus": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/BaseAlarmStatus"
+        },
+        {
+          "title": "Vehicle Alarm Status"
+        },
+        {
+          "required": [
+            "activation",
+            "createdAt"
+          ]
+        }
+      ]
+    },
+    "AlarmTrigger": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/BaseAlarmTrigger"
+        },
+        {
+          "title": "Vehicle Alarm Trigger"
+        },
+        {
+          "required": [
+            "type",
+            "startAt",
+            "createdAt"
+          ]
+        }
+      ]
+    },
+    "BaseAlarmStatus": {
+      "type": "object",
+      "title": "Vehicle Alarm Status",
+      "description": "Describe a vehicle alarm status.",
+      "properties": {
+        "activation": {
+          "description": "Define whether the vehicle alarm is active or not.",
+          "type": "string",
+          "enum": [
+            "Inactive",
+            "Active"
+          ]
+        }
+      },
+      "required": [
+        "activation"
+      ]
+    },
+    "BaseAlarmTrigger": {
+      "type": "object",
+      "title": "Vehicle Alarm Trigger",
+      "description": "Describe a vehicle alarm trigger.",
+      "properties": {
+        "type": {
+          "description": "Define the vehicle break-in type.",
+          "type": "string",
+          "enum": [
+            "NoBreakIn",
+            "FrontRightDoorBreakIn",
+            "FrontLeftDoorBreakIn",
+            "RearRightFrontDoorBreakIn",
+            "RearLeftFrontDoorBreakIn",
+            "HoodDoorBreakIn",
+            "TrunkDoorBreakIn",
+            "BackliteDoorBreakIn",
+            "RoofBreakIn",
+            "VolumetricBreakIn",
+            "VehicleLifting",
+            "ElectricalsystemBreakIn",
+            "KeyLearning",
+            "UnauthenticatedStartup"
+          ]
+        },
+        "position": {
+          "allOf": [
+            {
+              "description": "The position (last vehicle known one) where the alarm triggered."
+            },
+            {
+              "$ref": "#/$defs/Position"
+            }
+          ]
+        },
+        "startAt": {
+          "description": "Time when the alarm triggering started.",
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "type",
+        "startAt"
+      ]
+    },
+    "BaseSafety": {
+      "type": "object",
+      "properties": {
+        "beltStatus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/BeltStatus"
+          }
+        },
+        "autoECallTriggering": {
+          "type": "string",
+          "enum": [
+            "NotDetected",
+            "Detected",
+            "ShockDetectionUnabled"
+          ]
+        }
+      }
+    },
+    "BasicKinetic": {
+      "description": "Everything related to the movement of the vehicle. Speed, acceleration..\n",
+      "properties": {
+        "acceleration": {
+          "type": "number",
+          "format": "float",
+          "description": "Vehicle acceleration (expressed in m/s²)"
+        },
+        "speed": {
+          "type": "number",
+          "format": "float",
+          "description": "Vehicle speed (expressed in km/h)"
+        },
+        "moving": {
+          "type": "boolean"
+        }
+      }
+    },
+    "BasicProgram": {
+      "type": "object",
+      "description": "Describe recurring action.",
+      "properties": {
+        "start": {
+          "type": "string",
+          "description": "The program relative (to 00:00) start time formatted using the duration format based on [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) with the schema: P[n]Y[n]M[n]DT[n]H[n]M[n]S\n\n_example_: \n\n* PT14H30M means 14H and 30Min\n"
+        },
+        "occurence": {
+          "type": "object",
+          "description": "The occurrence on the program will spread on days depending on recurrence value.\n",
+          "properties": {
+            "day": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Mon",
+                  "Tue",
+                  "Wed",
+                  "Thu",
+                  "Fri",
+                  "Sat",
+                  "Sun"
+                ]
+              }
+            }
+          },
+          "required": [
+            "day"
+          ]
+        }
+      },
+      "required": [
+        "start"
+      ]
+    },
+    "Battery": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/BatteryBase"
+        }
+      ],
+      "required": [
+        "createdAt"
+      ]
+    },
+    "BatteryBase": {
+      "description": "Describe the car (with combustion engine)  battery status.",
+      "type": "object",
+      "properties": {
+        "voltage": {
+          "type": "number",
+          "description": "Auxiliary battery (12V) state of health in %",
+          "format": "float"
+        }
+      }
+    },
+    "BeltStatus": {
+      "type": "object",
+      "description": "Seat belt condition.",
+      "properties": {
+        "belt": {
+          "description": "Belt status.",
+          "type": "string",
+          "enum": [
+            "Normal",
+            "Omission"
+          ]
+        },
+        "id": {
+          "description": "Seat identifier.",
+          "type": "string",
+          "enum": [
+            "Driver",
+            "Passenger"
+          ]
+        }
+      }
+    },
+    "ChargeScheduleProgram": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/BasicProgram"
+        },
+        {
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "Determines whether this program is enabled or not."
+            },
+            "slot": {
+              "type": "integer",
+              "description": "This program number. Can only be used ONE time in the same charging program list."
+            },
+            "end": {
+              "type": "string",
+              "description": "The program relative (to 00:00) end time formatted using the duration format based on [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) with the schema: P[n]Y[n]M[n]DT[n]H[n]M[n]S\n\n_example_: \n\n* PT14H30M means 14H and 30Min\n"
+            },
+            "chargeUntilFull": {
+              "description": "If this program is tagged as chargin until battery is full.",
+              "type": "boolean"
+            }
+          }
+        }
+      ]
+    },
+    "ChargingStatusEnum": {
+      "description": "status of charging system.",
+      "type": "string",
+      "enum": [
+        "Disconnected",
+        "InProgress",
+        "Failure",
+        "Stopped",
+        "Finished"
+      ]
+    },
+    "CompositFuelEnergyConsumption": {
+      "description": "Fuel consumption.",
+      "type": "object",
+      "properties": {
+        "total": {
+          "description": "Total Fuel consumption expressed in cL.",
+          "type": "number",
+          "format": "float",
+          "minimum": 0
+        },
+        "instant": {
+          "description": "Instant Fuel consumption.\n* If subType equal to FossilEnergy than it will be expressed in L/100Km.\n* If subType equal to Hydrogen than it will be expressed in Kg/100Km.\n",
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "CreatedAtField": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "description": "Date when the resource has been created.",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "DoorsState": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/DoorsStateBase"
+        }
+      ],
+      "required": [
+        "createdAt"
+      ]
+    },
+    "DoorsStateBase": {
+      "type": "object",
+      "properties": {
+        "lockedStates": {
+          "type": "array",
+          "description": "List of all known doors' states",
+          "items": {
+            "type": "string",
+            "enum": [
+              "Unlocked",
+              "Locked",
+              "SuperLocked",
+              "DriverDoorUnlocked",
+              "CabinDoorsUnlocked",
+              "CargoDoorsLocked",
+              "CargoDoorsUnlocked",
+              "RearDoorsUnlocked",
+              "RearDoorsLocked",
+              "TrunkLocked",
+              "TrunkUnLocked"
+            ]
+          }
+        },
+        "opening": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "description": "Opening state per door.",
+            "properties": {
+              "identifier": {
+                "type": "string",
+                "enum": [
+                  "Driver",
+                  "Passenger",
+                  "RearLeft",
+                  "RearRight",
+                  "Trunk",
+                  "RearWindow",
+                  "RoofWindow"
+                ]
+              },
+              "state": {
+                "type": "string",
+                "enum": [
+                  "Open",
+                  "Closed"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "DrivingBehavior": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "type": "object"
+        },
+        {
+          "properties": {
+            "updatedAt": {
+              "description": "Date when the resource has been updated.",
+              "type": "string",
+              "format": "date-time",
+              "deprecated": true
+            }
+          }
+        },
+        {
+          "$ref": "#/$defs/DrivingBehaviorBase"
+        }
+      ],
+      "required": [
+        "createdAt"
+      ]
+    },
+    "DrivingBehaviorBase": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "description": "Driving mode by driver selection",
+          "type": "string",
+          "enum": [
+            "Normal",
+            "Sport",
+            "Comfort",
+            "Eco",
+            "Sand",
+            "Mud",
+            "Snow",
+            "ZEV",
+            "Hybrid",
+            "ZEVEco",
+            "HybridEco",
+            "EcoPlus",
+            "eAWD",
+            "4AWD",
+            "ReinforcedLoad"
+          ]
+        }
+      }
+    },
+    "Energy": {
+      "description": "Describe vehicle energy supply for thermic, low emission vehicle or both.",
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        }
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Energy type present on the vehicle.",
+          "enum": [
+            "Fuel",
+            "Electric"
+          ]
+        },
+        "subType": {
+          "type": "string",
+          "description": "Energy subtype. This field is not mandatory and therefore if it is not present, it means that the resource consumer should only process the primary energy type. The enumeration of the subtypes is not exhaustive and may contain more elements depending on the evolution of the vehicles. The consumer of the data must take this constraint into account. The Fossil and Electric energy subtypes are only used to populate this subtype for the default Fuel and Eletric types.\n  * Electric and hydrogen vehicles energy types are considered as low emission energies whereas fuel(fossil) is associated to thermic energy\n",
+          "enum": [
+            "FossilEnergy",
+            "ElectricEnergy",
+            "Hydrogen"
+          ]
+        },
+        "level": {
+          "type": "number",
+          "format": "float",
+          "description": "Percentage of remaining energy (Fuel or electric) level. Expressed with a precision of 0.1%.",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "autonomy": {
+          "description": "Vehicle autonomy expressed in km for this energy class.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "extension": {
+          "type": "object",
+          "properties": {
+            "fuel": {
+              "description": "Specific fuel energy properties.",
+              "type": "object",
+              "properties": {
+                "consumptions": {
+                  "$ref": "#/$defs/CompositFuelEnergyConsumption"
+                }
+              }
+            },
+            "electric": {
+              "description": "Specific electric energy parameters.",
+              "type": "object",
+              "properties": {
+                "battery": {
+                  "$ref": "#/$defs/EnergyBattery"
+                },
+                "charging": {
+                  "$ref": "#/$defs/EnergyCharging"
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "createdAt",
+        "type"
+      ]
+    },
+    "EnergyBattery": {
+      "type": "object",
+      "description": "Electric charging state.",
+      "properties": {
+        "load": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/CreatedAtField"
+            },
+            {
+              "$ref": "#/$defs/LoadElectricEnergy"
+            }
+          ],
+          "required": [
+            "createdAt"
+          ]
+        },
+        "health": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/CreatedAtField"
+            },
+            {
+              "$ref": "#/$defs/HealthElectricEnergy"
+            }
+          ],
+          "required": [
+            "createdAt"
+          ]
+        }
+      }
+    },
+    "EnergyCharging": {
+      "type": "object",
+      "description": "Electric charging state.",
+      "properties": {
+        "plugged": {
+          "type": "boolean"
+        },
+        "status": {
+          "$ref": "#/$defs/ChargingStatusEnum"
+        },
+        "remainingTime": {
+          "description": "Remaning time before the battery is fully charged. This duration is expressed using [ISO8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) format.",
+          "type": "string"
+        },
+        "chargingRate": {
+          "description": "Charging speed (expressed in gained batteryLife per hour -> KM/H).",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 500
+        },
+        "chargingPowerLevel": {
+          "description": "Charging power level. Expressed by possible values enum. This enum list may change in the future. The application must be aware of this and provide for lenient deserialization.",
+          "type": "string",
+          "enum": [
+            "Level1",
+            "Level2",
+            "Level3",
+            "Level4",
+            "Level5"
+          ]
+        },
+        "chargingMode": {
+          "description": "The charging mode; Slow, Quick and No(not charging).",
+          "type": "string",
+          "enum": [
+            false,
+            "Slow",
+            "Quick"
+          ]
+        },
+        "nextDelayedTime": {
+          "description": "Duration (as defined in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)) until the next battery charging.",
+          "type": "string"
+        },
+        "schedule": {
+          "properties": {
+            "programs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ChargeScheduleProgram"
+              }
+            }
+          }
+        },
+        "type": {
+          "description": "Charging type associated to the vehicle. Full means that the charge will stop when it is completed whereas partial will stop before end of charge in order to optimize battery lifetime.",
+          "type": "string",
+          "enum": [
+            "Partial",
+            "Full"
+          ]
+        }
+      }
+    },
+    "Engine": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/EngineBase"
+        }
+      ],
+      "required": [
+        "createdAt"
+      ]
+    },
+    "EngineAir": {
+      "type": "object",
+      "properties": {
+        "temp": {
+          "description": "Engine air temperature expressed in Celsius degrees.",
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "EngineBase": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "default": "Thermic",
+          "enum": [
+            "Thermic",
+            "Electric"
+          ]
+        },
+        "speed": {
+          "type": "number",
+          "description": "Engine's speed in RPM",
+          "format": "float"
+        },
+        "gmpStatus": {
+          "type": "string",
+          "enum": [
+            "NotRunning",
+            "Starting",
+            "Running",
+            "Stopping",
+            "Stopped"
+          ],
+          "deprecated": true
+        },
+        "extension": {
+          "type": "object",
+          "properties": {
+            "thermic": {
+              "type": "object",
+              "properties": {
+                "coolant": {
+                  "allOf": [
+                    {
+                      "description": "Engine coolant liquid properties."
+                    },
+                    {
+                      "$ref": "#/$defs/EngineLiquid"
+                    }
+                  ]
+                },
+                "oil": {
+                  "allOf": [
+                    {
+                      "description": "Engine oil properties."
+                    },
+                    {
+                      "$ref": "#/$defs/EngineLiquid"
+                    }
+                  ]
+                },
+                "air": {
+                  "allOf": [
+                    {
+                      "$ref": "#/$defs/EngineAir"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "EngineLiquid": {
+      "type": "object",
+      "properties": {
+        "level": {
+          "description": "Engine liquid level expressed in persent.",
+          "type": "integer"
+        },
+        "temp": {
+          "description": "Engine liquid temperature expressed in Celsius degrees.",
+          "type": "number",
+          "format": "float"
+        }
+      }
+    },
+    "Environment": {
+      "type": "object",
+      "properties": {
+        "luminosity": {
+          "$ref": "#/$defs/Luminosity"
+        },
+        "air": {
+          "$ref": "#/$defs/Air"
+        }
+      }
+    },
+    "Extension": {
+      "type": "object",
+      "description": "Additional data set.",
+      "properties": {
+        "odometer": {
+          "$ref": "#/$defs/VehicleOdometer"
+        },
+        "kinetic": {
+          "$ref": "#/$defs/Kinetic"
+        }
+      }
+    },
+    "Geometry": {
+      "title": "Geometry",
+      "type": "object",
+      "description": "This object expresses a GeoJSON Point as specified by [rfc7946](https://tools.ietf.org/html/rfc7946#section-3.1.2).",
+      "properties": {
+        "coordinates": {
+          "title": "Coordinates",
+          "description": "Geometry coordinates"
+        }
+      },
+      "required": [
+        "coordinates",
+        "type"
+      ]
+    },
+    "HealthElectricEnergy": {
+      "type": "object",
+      "properties": {
+        "capacity": {
+          "description": "Health related to battery capacity (expressed in percentage).",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "resistance": {
+          "description": "Health related to battery resistance (expressed in percentage).",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    },
+    "Ignition": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/IgnitionBase"
+        }
+      ]
+    },
+    "IgnitionBase": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "Stop",
+            "StartUp",
+            "Start"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "createdAt"
+      ]
+    },
+    "Kinetic": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/BasicKinetic"
+        }
+      ],
+      "required": [
+        "createdAt"
+      ]
+    },
+    "LightingSystem": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/LightingSystemBase"
+        }
+      ],
+      "required": [
+        "createdAt"
+      ]
+    },
+    "LightingSystemBase": {
+      "description": "Expresses the Directional, Fog and Position vehicle lights.",
+      "type": "object",
+      "properties": {
+        "turn": {
+          "$ref": "#/$defs/Lights"
+        },
+        "fog": {
+          "$ref": "#/$defs/Lights"
+        }
+      }
+    },
+    "Lights": {
+      "description": "Expresses all light, direction (```Left```, ```Right``` ),  position (```Front```, ```Rear``` ) and status  (```Off```, ```On```) for a category.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "direction": {
+            "type": "string",
+            "enum": [
+              "Left",
+              "Right"
+            ]
+          },
+          "position": {
+            "type": "string",
+            "enum": [
+              "Front",
+              "Rear"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              false,
+              true
+            ]
+          }
+        }
+      }
+    },
+    "Link": {
+      "type": "object",
+      "description": "A Link Object as defined by [JSONHAL#Link Object](https://tools.ietf.org/html/draft-kelly-json-hal-08#section-5).",
+      "required": [
+        "href"
+      ],
+      "properties": {
+        "href": {
+          "$ref": "#/$defs/Url"
+        },
+        "templated": {
+          "type": "boolean",
+          "description": "SHOULD be true when the Link Object's \"href\" property is an [URI Template](https://tools.ietf.org/html/rfc6570)"
+        },
+        "type": {
+          "type": "string",
+          "description": "a hint to indicate the media type expected when dereferencing the target resource."
+        },
+        "deprecation": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Url"
+            },
+            {
+              "description": "indicates that the link is to be deprecated (i.e. removed) at a future date.  Its value is a URL that SHOULD provide further information about the deprecation."
+            }
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string",
+          "description": "Its value is a string and is intended for labelling the link with a human-readable identifier (as defined by [RFC5988](https://tools.ietf.org/html/rfc5988))."
+        },
+        "profile": {
+          "type": "string",
+          "description": "Its value is a string and is intended for indicating the language of the target resource (as defined by [RFC5988])."
+        },
+        "hreflang": {
+          "type": "string",
+          "description": "Its value is a string which is a URI that hints about the profile (as defined by [I-D.wilde-profile-link](https://tools.ietf.org/html/draft-kelly-json-hal-08#ref-I-D.wilde-profile-link)) of the target resource."
+        }
+      }
+    },
+    "LoadElectricEnergy": {
+      "properties": {
+        "capacity": {
+          "description": "Electric battery total capacity (expressed in Wh).",
+          "type": "integer"
+        },
+        "residual": {
+          "description": "Residual electric energy (expressed in Wh)",
+          "type": "integer"
+        }
+      }
+    },
+    "Luminosity": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/LuminosityBase"
+        }
+      ],
+      "required": [
+        "createdAt"
+      ]
+    },
+    "LuminosityBase": {
+      "type": "object",
+      "properties": {
+        "day": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Point": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/Geometry"
+        },
+        {
+          "title": "Point"
+        },
+        {
+          "description": "This object expresses a GeoJSON Point as specified by [rfc7946](https://tools.ietf.org/html/rfc7946#section-3.1.2)."
+        },
+        {
+          "properties": {
+            "type": {
+              "type": "string",
+              "default": "Point",
+              "enum": [
+                "Point"
+              ]
+            },
+            "coordinates": {
+              "description": "This is a simple 2 (or more) numbers vector used to define Geometry Point objects.",
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "float",
+                "minItems": 2
+              }
+            }
+          }
+        },
+        {
+          "required": [
+            "type",
+            "coordinates"
+          ]
+        },
+        {}
+      ]
+    },
+    "Position": {
+      "allOf": [
+        {
+          "required": [
+            "geometry",
+            "properties",
+            "type"
+          ],
+          "type": "object",
+          "title": "Position",
+          "properties": {
+            "type": {
+              "type": "string",
+              "default": "Feature",
+              "enum": [
+                "Feature"
+              ]
+            },
+            "geometry": {
+              "$ref": "#/$defs/Point"
+            },
+            "properties": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/CreatedAtField"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "vin": {
+                      "$ref": "#/$defs/Vin"
+                    },
+                    "heading": {
+                      "type": "integer",
+                      "description": "Course angle expressed in degree.",
+                      "minimum": 0,
+                      "maximum": 360
+                    },
+                    "signalQuality": {
+                      "type": "integer"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "Estimated",
+                        "Acquire"
+                      ]
+                    },
+                    "fixStatus": {
+                      "type": "string",
+                      "description": "Fix status information is only returned when position type is set to Acquire. Horizontal & altitude position can be determined in 3D fix status mode where it is only horizontal position in 2D mode.",
+                      "enum": [
+                        "2D",
+                        "3D"
+                      ]
+                    }
+                  }
+                }
+              ],
+              "required": [
+                "createdAt"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "Powertrain": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/PowertrainBase"
+        }
+      ],
+      "required": [
+        "createdAt"
+      ]
+    },
+    "PowertrainBase": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Status of the powertrain",
+          "enum": [
+            "NotRunning",
+            "Starting",
+            "Running",
+            "Stopping",
+            "Stopped"
+          ]
+        }
+      }
+    },
+    "Preconditioning": {
+      "allOf": [
+        {
+          "type": "object",
+          "description": "Preconditioning the vehicle for driver and passenger.",
+          "properties": {
+            "airConditioning": {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/CreatedAtField"
+                },
+                {
+                  "type": "object"
+                },
+                {
+                  "properties": {
+                    "status": {
+                      "description": "The status of the preconditioning feature.\n",
+                      "type": "string",
+                      "enum": [
+                        "Enabled",
+                        "Disabled",
+                        "Finished",
+                        "Failure"
+                      ]
+                    },
+                    "startingCause": {
+                      "description": "starting cause",
+                      "type": "string",
+                      "enum": [
+                        "Immediate",
+                        "Scheduled"
+                      ]
+                    },
+                    "failureCause": {
+                      "description": "failure cause",
+                      "type": "string",
+                      "enum": [
+                        "Defect",
+                        "DoorOpened",
+                        "LowBattery",
+                        "LowFuelLevel",
+                        "TooManyUnusedProg",
+                        "WindowsRoofOpened",
+                        "HoodOpened",
+                        "NotParked",
+                        "OtherFailures"
+                      ]
+                    },
+                    "programs": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 4,
+                      "items": {
+                        "$ref": "#/$defs/PreconditioningProgram"
+                      }
+                    }
+                  }
+                }
+              ],
+              "required": [
+                "createdAt"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "PreconditioningProgram": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/Program"
+        },
+        {
+          "title": "PreconditionProgram"
+        },
+        {
+          "properties": {
+            "slot": {
+              "type": "integer",
+              "description": "This program number. Can only be used ONE time in the same preconditioning list.",
+              "minimum": 1,
+              "maximum": 4
+            },
+            "enabled": {
+              "type": "boolean",
+              "description": "Determines whether this program is enabled or not.\n"
+            }
+          }
+        },
+        {
+          "required": [
+            "start",
+            "enabled",
+            "recurrence",
+            "occurence"
+          ]
+        }
+      ]
+    },
+    "Privacy": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/PrivacyBase"
+        }
+      ],
+      "required": [
+        "createdAt"
+      ]
+    },
+    "PrivacyBase": {
+      "type": "object",
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "None",
+            "Geolocation",
+            "Full"
+          ]
+        }
+      }
+    },
+    "Program": {
+      "type": "object",
+      "description": "Describe recurring action.",
+      "properties": {
+        "recurrence": {
+          "description": "Determines the recurrence of the program. \n* None: means no recurrence. \n* Daily: repeated over the week. \n",
+          "type": "string",
+          "enum": [
+            "None",
+            "Daily"
+          ],
+          "default": "Daily"
+        },
+        "start": {
+          "type": "string",
+          "description": "The program start time formatted using the duration format based on [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Time_intervals) with the schema: P[n]Y[n]M[n]DT[n]H[n]M[n]S\n\n_example_: \n\n* PT14H30M means 14H and 30Min\n"
+        },
+        "occurence": {
+          "type": "object",
+          "description": "The occurrence on the program will spread on days depending on recurrence value.\n",
+          "properties": {
+            "day": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Mon",
+                  "Tue",
+                  "Wed",
+                  "Thu",
+                  "Fri",
+                  "Sat",
+                  "Sun"
+                ]
+              }
+            }
+          },
+          "required": [
+            "day"
+          ]
+        }
+      },
+      "required": [
+        "start"
+      ]
+    },
+    "Safety": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/BaseSafety"
+        }
+      ],
+      "required": [
+        "createdAt"
+      ]
+    },
+    "ServiceType": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "Electric",
+                "Hybrid",
+                "Unknown"
+              ]
+            }
+          }
+        }
+      ],
+      "required": [
+        "createdAt"
+      ],
+      "deprecated": true
+    },
+    "StolenBase": {
+      "type": "object",
+      "properties": {
+        "_links": {
+          "type": "object",
+          "properties": {
+            "self": {
+              "$ref": "#/$defs/Link"
+            },
+            "vehicle": {
+              "$ref": "#/$defs/Link"
+            }
+          },
+          "required": [
+            "self"
+          ]
+        },
+        "id": {
+          "type": "string"
+        },
+        "state": {
+          "description": "Stolen state of the vehicle (True means the vhicle is reported stolen).",
+          "type": "boolean"
+        },
+        "startedAt": {
+          "description": "Stolen vehicle start time.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "endAt": {
+          "description": "Stolen vehicle stop time.",
+          "type": "string",
+          "format": "date-time"
+        },
+        "startPosition": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Position"
+            },
+            {
+              "description": "The position (last vehicle known one) where the vehicle is reported stolen."
+            }
+          ]
+        },
+        "endPosition": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/Position"
+            },
+            {
+              "description": "The position (last vehicle known one) where the stolen state is not active anymore."
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "state",
+        "createdAt",
+        "startedAt",
+        "_links"
+      ]
+    },
+    "StolenObj": {
+      "allOf": [
+        {
+          "title": "StolenStatus"
+        },
+        {
+          "description": "Vehicle Stolen active status (only returns when vehicle is reported stolen)."
+        },
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/StolenBase"
+        }
+      ]
+    },
+    "Transmission": {
+      "type": "object",
+      "properties": {
+        "gearbox": {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "type": "object",
+              "properties": {
+                "automatic": {
+                  "type": "boolean"
+                },
+                "sport": {
+                  "type": "boolean"
+                },
+                "snow": {
+                  "type": "boolean"
+                },
+                "sequential": {
+                  "type": "boolean"
+                },
+                "semiManual": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "ratio": {
+              "description": "Current gear-box ratio.",
+              "type": "string",
+              "enum": [
+                "Ratio1",
+                "Ratio2",
+                "Ratio3",
+                "Ratio4",
+                "Ratio5",
+                "Ratio6",
+                "Ratio7",
+                "Ratio8",
+                "Neutral",
+                "Reverse"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "UpdatedAtField": {
+      "type": "object",
+      "properties": {
+        "updatedAt": {
+          "description": "Date when the resource has been updated.",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Url": {
+      "type": "string",
+      "description": "URL format follows [RFC 3986](https://tools.ietf.org/html/rfc3986) and usually looks like this ` scheme://host[:port][/Path] `"
+    },
+    "VehicleOdometer": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "mileage": {
+              "description": "Vehicle mileage expressed in KM.",
+              "type": "number",
+              "format": "float",
+              "minimum": 0.0
+            }
+          }
+        }
+      ],
+      "required": [
+        "createdAt"
+      ]
+    },
+    "VehicleStatusAlarm": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/Alarm"
+        },
+        {
+          "description": "Describes the current vehicle alarm status and the latest (if available) trigger."
+        }
+      ]
+    },
+    "Vin": {
+      "description": "Identifier of a vehicle. **Set when retrieving resource in batch mode**.",
+      "type": "string"
+    },
+    "WipingBladesState": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/CreatedAtField"
+        },
+        {
+          "$ref": "#/$defs/WipingBladesStateBase"
+        }
+      ],
+      "required": [
+        "createdAt"
+      ]
+    },
+    "WipingBladesStateBase": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "description": "Either active (true) or not (false).",
+          "type": "boolean"
+        },
+        "speed": {
+          "description": "Wiping speed. This field is present only if active field is set to true.",
+          "type": "string",
+          "enum": [
+            "High",
+            "Low"
+          ]
+        }
+      }
+    }
+  }
+}

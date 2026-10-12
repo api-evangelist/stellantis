@@ -1,0 +1,55 @@
+generated: '2026-10-13'
+method: derived
+source: openapi/stellantis-cloud-data-treatment-api-openapi.yml, openapi/stellantis-cloud-platform-notification-webhooks-openapi.yml,
+  openapi/stellantis-connected-car-b2b-api-openapi.yml, openapi/stellantis-connected-car-b2b-webhooks-openapi.yml,
+  openapi/stellantis-connected-car-b2c-api-openapi.yml, openapi/stellantis-connected-car-b2c-webhooks-openapi.yml,
+  openapi/stellantis-connected-vehicle-api-openapi.json
+summary:
+  types:
+  - apiKey
+  - http
+  - oauth2
+  api_key_in:
+  - header
+  - query
+  oauth2_flows:
+  - implicit
+schemes:
+- name: api_keyAuth
+  type: apiKey
+  in: query
+  parameter: client_id
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - openapi/stellantis-connected-car-b2b-api-openapi.yml
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml
+- name: api_oauth
+  type: oauth2
+  flows:
+  - flow: implicit
+    authorizationUrl: https://api.mpsa.com/api/connectedcar/v2/oauth/authorize
+    scopes: 47
+  description: This API uses OAuth 2 with the implicit grant flow. [More info](https://api.example.com/docs/auth)
+  sources:
+  - openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - openapi/stellantis-connected-car-b2c-api-openapi.yml
+- name: basicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/stellantis-cloud-platform-notification-webhooks-openapi.yml
+  - openapi/stellantis-connected-car-b2b-api-openapi.yml
+  - openapi/stellantis-connected-car-b2b-webhooks-openapi.yml
+  - openapi/stellantis-connected-car-b2c-webhooks-openapi.yml
+- name: api_key
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  sources:
+  - openapi/stellantis-connected-vehicle-api-openapi.json
+- name: SDK-Cognito-Authorizer
+  type: apiKey
+  in: header
+  parameter: Authorization
+  sources:
+  - openapi/stellantis-connected-vehicle-api-openapi.json

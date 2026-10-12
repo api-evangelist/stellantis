@@ -1,0 +1,220 @@
+generated: '2026-10-13'
+method: derived
+generator: derive-mcp-candidate.py
+source:
+- openapi/stellantis-cloud-docg-device-management-api-openapi.yml
+- openapi/stellantis-cloud-notification-center-api-openapi.yml
+- openapi/stellantis-cloud-platform-notification-webhooks-openapi.yml
+- openapi/stellantis-connected-car-b2b-api-openapi.yml
+- openapi/stellantis-connected-car-b2b-webhooks-openapi.yml
+- openapi/stellantis-connected-vehicle-api-openapi.json
+status: candidate
+deployment:
+  mode: none
+  auth: unknown
+  verified: probed
+note: 'No MCP server was found. The pre-flight posted tools/list to /mcp on api.stellantis.com, www.stellantis.com, developers.stellantis.com;
+  verdict opaque (https://www.stellantis.com/mcp answered 403: the edge authenticates before it routes, which proves nothing either way). Candidate
+  tools below are derived from the 162 operation(s) in the provider''s own OpenAPI (40 listed); they describe what a server WOULD expose, not
+  one that exists.'
+tools:
+- name: create_docg_campaigncreation
+  operationId: POST /v1/docg/campaignCreation
+  method: POST
+  path: /v1/docg/campaignCreation
+  description: Campaign Creation
+- name: get_v1_notification_richcontent
+  operationId: getV1NotificationRichcontent
+  method: GET
+  path: /v1/notification/richContent
+  description: Get all rich content notification templates
+- name: post_whmsgs
+  operationId: postWHMsgs
+  method: POST
+  path: /messages/webhook
+  description: Post a list of messages.
+- name: get_vehicles_capabilities
+  operationId: getVehiclesCapabilities
+  method: GET
+  path: /vehicles/{vin}
+  description: List of vehicles characteristics & capabilities
+- name: post_remote_events
+  operationId: postRemoteEvents
+  method: POST
+  path: /remote/webhook
+  description: Post a list of remote events.
+- name: create_admin_approve
+  operationId: POST /admin/approve
+  method: POST
+  path: /admin/approve
+  description: POST /admin/approve
+- name: create_docg_campaignstart
+  operationId: POST /v1/docg/campaignStart
+  method: POST
+  path: /v1/docg/campaignStart
+  description: Campaign Start
+- name: post_v1_notification_richcontent
+  operationId: postV1NotificationRichcontent
+  method: POST
+  path: /v1/notification/richContent
+  description: Import rich content notification templates
+- name: post_pnmsgs
+  operationId: postPNMsgs
+  method: POST
+  path: /messages/pushnotif
+  description: Post a list of messages.
+- name: get_fleets
+  operationId: getFleets
+  method: GET
+  path: /fleets
+  description: Fleets owned by a partner
+- name: post_monitor_events
+  operationId: postMonitorEvents
+  method: POST
+  path: /monitors/webhook
+  description: Post a list of monitor events.
+- name: create_admin_deleteaccounts
+  operationId: POST /admin/deleteaccounts
+  method: POST
+  path: /admin/deleteaccounts
+  description: POST /admin/deleteaccounts
+- name: create_docg_campaignprocessfeedback
+  operationId: POST /v1/docg/campaignProcessFeedback
+  method: POST
+  path: /v1/docg/campaignProcessFeedback
+  description: Campaign Process Feedback
+- name: get_v1_notification_template
+  operationId: getV1NotificationTemplate
+  method: GET
+  path: /v1/notification/template
+  description: Get all notification templates
+- name: post_wsmsgs
+  operationId: postWSMsgs
+  method: POST
+  path: /messages/websocket
+  description: Post a list of messages.
+- name: get_fleet
+  operationId: getFleet
+  method: GET
+  path: /fleets/{fid}
+  description: Fleet's information
+- name: create_admin_forcelink
+  operationId: POST /admin/forcelink
+  method: POST
+  path: /admin/forcelink
+  description: POST /admin/forcelink
+- name: create_docg_vehicleregistrationprocessfeedback
+  operationId: POST /v1/docg/vehicleRegistrationProcessFeedback
+  method: POST
+  path: /v1/docg/vehicleRegistrationProcessFeedback
+  description: Vehicle Registration Process Feedback
+- name: post_v1_notification_template
+  operationId: postV1NotificationTemplate
+  method: POST
+  path: /v1/notification/template
+  description: Import notification templates
+- name: get_vehicles_by_device
+  operationId: getVehiclesByDevice
+  method: GET
+  path: /fleets/{fid}/vehicles
+  description: List of vehicles
+- name: create_admin_forceunlink
+  operationId: POST /admin/forceunlink
+  method: POST
+  path: /admin/forceunlink
+  description: POST /admin/forceunlink
+- name: create_docg_swregistrationprocessfeedback
+  operationId: POST /v1/docg/swRegistrationProcessFeedback
+  method: POST
+  path: /v1/docg/swRegistrationProcessFeedback
+  description: software Registration Process Feedback
+- name: get_v1_nonregisteredvehicles_vehicleid_notifications
+  operationId: getV1NonregisteredvehiclesVehicleidNotifications
+  method: GET
+  path: /v1/nonRegisteredVehicles/{vehicleId}/notifications
+  description: Get notification for vehicle
+- name: get_vehicle_byid
+  operationId: getVehicleByid
+  method: GET
+  path: /fleets/{fid}/vehicles/{vid}
+  description: Details of a vehicle.
+- name: update_admin_refreshaccounts
+  operationId: PATCH /admin/refreshaccounts
+  method: PATCH
+  path: /admin/refreshaccounts
+  description: PATCH /admin/refreshaccounts
+- name: create_docg_swregistration
+  operationId: POST /v1/docg/swRegistration
+  method: POST
+  path: /v1/docg/swRegistration
+  description: SW Registration
+- name: post_v1_nonregisteredvehicles_vehicleid_notifications
+  operationId: postV1NonregisteredvehiclesVehicleidNotifications
+  method: POST
+  path: /v1/nonRegisteredVehicles/{vehicleId}/notifications
+  description: Send notification to non registered vehicle
+- name: get_car_last_position
+  operationId: getCarLastPosition
+  method: GET
+  path: /fleets/{fid}/vehicles/{vid}/lastPosition
+  description: Last position identified
+- name: get_admin_unapprovedaccounts
+  operationId: GET /admin/unapprovedaccounts
+  method: GET
+  path: /admin/unapprovedaccounts
+  description: GET /admin/unapprovedaccounts
+- name: create_docg_vehicleregistration
+  operationId: POST /v1/docg/vehicleRegistration
+  method: POST
+  path: /v1/docg/vehicleRegistration
+  description: First Vehicle Registration
+- name: get_v1_notification_grouping_group
+  operationId: getV1NotificationGroupingGroup
+  method: GET
+  path: /v1/notification/grouping/{group}
+  description: Get group
+- name: get_vehicle_collision
+  operationId: getVehicleCollision
+  method: GET
+  path: /fleets/{fid}/vehicles/{vid}/collisions
+  description: Collisions of a vehicle.
+- name: create_hackathon-register
+  operationId: POST /hackathon-register
+  method: POST
+  path: /hackathon-register
+  description: POST /hackathon-register
+- name: update_docg_vehicleregistrationupdate
+  operationId: PATCH /v1/docg/vehicleRegistrationUpdate
+  method: PATCH
+  path: /v1/docg/vehicleRegistrationUpdate
+  description: Vehicle Registration Update
+- name: get_v1_notification_placeholder_key
+  operationId: getV1NotificationPlaceholderKey
+  method: GET
+  path: /v1/notification/placeholder/{key}
+  description: Export notification placeholders
+- name: get_vehicle_collision_by_id
+  operationId: getVehicleCollisionById
+  method: GET
+  path: /fleets/{fid}/vehicles/{vid}/collisions/{cid}
+  description: An identified collision that occurred on a vehicle.
+- name: get_hackathon-unsubscribe
+  operationId: GET /hackathon-unsubscribe
+  method: GET
+  path: /hackathon-unsubscribe
+  description: GET /hackathon-unsubscribe
+- name: delete_v1_notification_placeholder_key
+  operationId: deleteV1NotificationPlaceholderKey
+  method: DELETE
+  path: /v1/notification/placeholder/{key}
+  description: Delete notification placeholder by key
+- name: get_vehicle_maintenance
+  operationId: getVehicleMaintenance
+  method: GET
+  path: /fleets/{fid}/vehicles/{vid}/maintenance
+  description: Maintenance details of a vehicle.
+- name: get_account
+  operationId: getAccount
+  method: GET
+  path: /v1/account
+  description: GET /v1/account

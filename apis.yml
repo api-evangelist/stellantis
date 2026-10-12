@@ -1,23 +1,231 @@
 aid: stellantis
 name: Stellantis
-description: 'Stellantis is a company surfaced via the API Evangelist harvest backlog (source: gap-automotive-real-estate)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Stellantis is the automotive group formed in 2021 by the merger of PSA Group and FCA, owning Abarth, Alfa Romeo, Chrysler, Citroen, Dodge, DS, Fiat, Jeep, Lancia, Maserati, Opel, Peugeot, Ram and Vauxhall. It publishes connected-vehicle developer APIs: the Stellantis Connected Vehicle API on developers.stellantis.com, the Connected Car B2C and B2B web APIs (inherited from Groupe PSA) documented at developer.groupe-psa.io, and Stellantis Cloud Capability API specifications published in its GitHub organization.'
 url: https://raw.githubusercontent.com/api-evangelist/stellantis/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:gap-automotive-real-estate
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-13 (local-v5; was harvest)
 specificationVersion: '0.20'
 created: '2026-10-13'
 modified: '2026-10-13'
 tags:
 - Company
-apis: []
+- Automotive
+- Connected Vehicles
+- Telematics
+- Vehicles
+- Webhooks
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/stellantis-agentic-access.yml
+- type: Spectral
+  url: rules/stellantis-rules.yml
+- type: JSONLD
+  url: json-ld/stellantis-context.jsonld
+- type: Vocabulary
+  url: vocabulary/stellantis-vocabulary.yml
+- type: DataModel
+  url: data-model/stellantis-data-model.yml
+- type: ErrorCatalog
+  url: errors/stellantis-problem-types.yml
+- type: Conformance
+  url: conformance/stellantis-conformance.yml
+- type: Hosts
+  url: hosts/stellantis-hosts.yml
+- type: Vendors
+  url: vendors/stellantis-vendors.yml
+- type: OAuthScopes
+  url: scopes/stellantis-scopes.yml
+- type: Authentication
+  url: authentication/stellantis-authentication.yml
+- type: DomainSecurity
+  url: security/stellantis-domain-security.yml
 - type: Website
   url: https://www.stellantis.com/
+- type: DeveloperPortal
+  url: https://developers.stellantis.com/
+- type: DeveloperPortal
+  url: https://developer.groupe-psa.io/
+- type: Documentation
+  url: https://developers.stellantis.com/docs.html
+- type: Documentation
+  url: https://developer.groupe-psa.io/webapi/
+- type: GettingStarted
+  url: https://developer.groupe-psa.io/webapi/b2c/quickstart/
+- type: APIReference
+  url: https://developer.groupe-psa.io/webapi/b2c/api-reference/
+- type: DataCatalog
+  url: https://developer.groupe-psa.io/connected-vehicles/data-catalog/
+- type: FAQ
+  url: https://developers.stellantis.com/faq.html
+- type: Support
+  url: https://developer.groupe-psa.io/contact-us/
+- type: Webhooks
+  url: openapi/stellantis-connected-car-b2b-webhooks-openapi.yml
+- type: GitHubOrganization
+  url: https://github.com/stellantis
+- type: TermsOfService
+  url: https://www.stellantis.com/en/legal-notes
+- type: PrivacyPolicy
+  url: https://www.stellantis.com/en/privacy
+- type: Partner
+  url: https://www.mobilisights.com/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/stellantis
+- type: YouTube
+  url: https://www.youtube.com/c/Stellantis_official/
+apis:
+- aid: stellantis:connected-vehicle-api
+  name: Stellantis Connected Vehicle API
+  description: 'Stellantis Connected Vehicle API (AWS API Gateway, x-api-key plus Cognito token) for linking accounts and reading vehicle data by VIN: last-known data, data streams, remote commands, geofence collections and geofencing notifications.'
+  humanURL: https://developers.stellantis.com/docs.html
+  baseURL: https://api.stellantis-developers.com
+  tags:
+  - Automotive
+  - Connected Vehicles
+  properties:
+  - type: OpenAPI
+    url: openapi/stellantis-connected-vehicle-api-openapi.json
+- aid: stellantis:connected-car-b2c-api
+  name: Stellantis Connected Car B2C API
+  description: Connected Car B2C web API (v2, inherited from Groupe PSA) giving end-user-authorised access to Peugeot, Citroen, DS, Opel and Vauxhall vehicle status, trips, alerts, maintenance and remote actions.
+  humanURL: https://developer.groupe-psa.io/webapi/b2c/
+  baseURL: https://api.mpsa.com/api/connectedcar/v2
+  tags:
+  - Automotive
+  - Connected Vehicles
+  properties:
+  - type: OpenAPI
+    url: openapi/stellantis-connected-car-b2c-api-openapi.yml
+  - type: Webhooks
+    url: openapi/stellantis-connected-car-b2c-webhooks-openapi.yml
+  - type: GettingStarted
+    url: https://developer.groupe-psa.io/webapi/b2c/quickstart/
+  - type: APIReference
+    url: https://developer.groupe-psa.io/webapi/b2c/api-reference/
+- aid: stellantis:connected-car-b2b-api
+  name: Stellantis Connected Car B2B API
+  description: 'Connected Car B2B web API (v3) for fleet and business partners: fleets, vehicles, monitors, remote commands, trips and telemetry, with webhook callbacks.'
+  humanURL: https://developer.groupe-psa.io/webapi/b2b/
+  baseURL: https://api-cert.groupe-psa.com/connectedcar/v3
+  tags:
+  - Automotive
+  - Connected Vehicles
+  properties:
+  - type: OpenAPI
+    url: openapi/stellantis-connected-car-b2b-api-openapi.yml
+  - type: Webhooks
+    url: openapi/stellantis-connected-car-b2b-webhooks-openapi.yml
+  - type: GettingStarted
+    url: https://developer.groupe-psa.io/webapi/b2b/quickstart/
+  - type: JSONSchema
+    url: json-schema/stellantis-monitor-parameter-schema.json
+  - type: JSONSchema
+    url: json-schema/stellantis-vehicle-schema.json
+  - type: JSONSchema
+    url: json-schema/stellantis-status-schema.json
+  - type: JSONSchema
+    url: json-schema/stellantis-remote-callback-subscribe-schema.json
+  - type: JSONSchema
+    url: json-schema/stellantis-position-schema.json
+  - type: JSONSchema
+    url: json-schema/stellantis-remote-schema.json
+- aid: stellantis:cloud-data-treatment-api
+  name: Stellantis Cloud Data Treatment API
+  description: Stellantis Cloud Capability Connected Car API (v1) data-treatment specification, published in the Stellantis/StellantisCloudCapability.github.io repository.
+  humanURL: https://github.com/Stellantis/StellantisCloudCapability.github.io
+  tags:
+  - Automotive
+  - Connected Vehicles
+  properties:
+  - type: OpenAPI
+    url: openapi/stellantis-cloud-data-treatment-api-openapi.yml
+  - type: Webhooks
+    url: openapi/stellantis-cloud-platform-notification-webhooks-openapi.yml
+- aid: stellantis:cloud-notification-center-api
+  name: Stellantis Cloud Notification Center API
+  description: Stellantis Cloud Capability notification API (templates, rich content, grouping and per-vehicle notifications), published in the StellantisCloudCapability.github.io repository; the spec names an internal host.
+  humanURL: https://github.com/Stellantis/StellantisCloudCapability.github.io
+  tags:
+  - Automotive
+  - Connected Vehicles
+  properties:
+  - type: OpenAPI
+    url: openapi/stellantis-cloud-notification-center-api-openapi.yml
+- aid: stellantis:cloud-docg-device-management-api
+  name: Stellantis Cloud DOCG Device Management API
+  description: Stellantis Cloud Capability DOCG device-management API (software campaigns, vehicle and software registration feedback), published in the StellantisCloudCapability.github.io repository.
+  humanURL: https://github.com/Stellantis/StellantisCloudCapability.github.io
+  tags:
+  - Automotive
+  - Connected Vehicles
+  properties:
+  - type: OpenAPI
+    url: openapi/stellantis-cloud-docg-device-management-api-openapi.yml
+- aid: stellantis:stellantis-data-treatment-api
+  name: Stellantis Data Treatment API
+  description: 'This is the description of the *Stellantis Connected Car V2 API*. The speccification is  is based on **OpenAPI Specification version
+
+    3** and can be displayed using [ReDoc](https://github.com/Rebilly/ReDoc) or [Swagger](http://swagger.io).'
+  humanURL: https://github.com/Stellantis/StellantisCloudCapability.github.io
+  baseURL: https://server/api/connectedcar/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/stellantis-data-treatment-openapi.yml
+- aid: stellantis:stellantis-data-treatment-system-api
+  name: Stellantis Data Treatment System API
+  description: 'This is the description of the *Stellantis Connected Car V2 API*. The speccification is  is based on **OpenAPI Specification version
+
+    3** and can be displayed using [ReDoc](https://github.com/Rebilly/ReDoc)a or [Swagger](http://swagger.io).'
+  humanURL: https://github.com/Stellantis/StellantisCloudCapability.github.io
+  baseURL: https://server/api/connectedcar/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/stellantis-data-treatment-system-openapi.yml
+  - type: JSONSchema
+    url: json-schema/stellantis-group-maintain-schema.json
+  - type: JSONSchema
+    url: json-schema/stellantis-data-stream-schema.json
+  - type: JSONSchema
+    url: json-schema/stellantis-group-obj-schema.json
+  - type: JSONSchema
+    url: json-schema/stellantis-data-stream-status-setter-schema.json
+- aid: stellantis:stellantis-data-treatment-api
+  name: Stellantis Data Treatment API
+  description: 'This is the description of the *Stellantis Connected Car V2 API*. The speccification is  is based on **OpenAPI Specification version
+
+    3** and can be displayed using [ReDoc](https://github.com/Rebilly/ReDoc) or [Swagger](http://swagger.io).'
+  humanURL: https://github.com/Stellantis/StellantisCloudCapability.github.io
+  baseURL: https://server/api/connectedcar/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/stellantis-data-treatment-openapi.yml
+- aid: stellantis:stellantis-data-treatment-system-api
+  name: Stellantis Data Treatment System API
+  description: 'This is the description of the *Stellantis Connected Car V2 API*. The speccification is  is based on **OpenAPI Specification version
+
+    3** and can be displayed using [ReDoc](https://github.com/Rebilly/ReDoc)a or [Swagger](http://swagger.io).'
+  humanURL: https://github.com/Stellantis/StellantisCloudCapability.github.io
+  baseURL: https://server/api/connectedcar/v1
+  properties:
+  - type: OpenAPI
+    url: openapi/_original/stellantis-data-treatment-system-openapi.yml
+  - type: JSONSchema
+    url: json-schema/stellantis-group-maintain-schema.json
+  - type: JSONSchema
+    url: json-schema/stellantis-data-stream-schema.json
+  - type: JSONSchema
+    url: json-schema/stellantis-group-obj-schema.json
+  - type: JSONSchema
+    url: json-schema/stellantis-data-stream-status-setter-schema.json
+x-enrichment:
+  date: '2026-10-13'
+  status: enriched
+  artifacts_added: 30
+  pass: local-v5

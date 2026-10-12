@@ -1,0 +1,16 @@
+generated: '2026-10-13'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.stellantis.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec  2 08:33:24 2026 GMT
+  hsts: null
+domains:
+- domain: stellantis.com
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
