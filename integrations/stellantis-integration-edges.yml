@@ -1,5 +1,5 @@
 generated: '2026-10-13'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/stellantis/integrations
 - https://n8n.io/integrations/stellantis/
@@ -12,5 +12,25 @@ checked:
 - https://zapier.com/apps/stellantis/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: smartcar
+  partner: smartcar
+  partner_match: aggregator
+  channel: partner-built
+  direction: partner-built
+  type: contract
+  relationship: system-coverage
+  evidence: https://compatibility.api.smartcar.com/v3/compatible-vehicles
+  detected_by: sweep-automotive.py
+  detected: '2026-10-13'
+- partner_name: high-mobility
+  partner: high-mobility
+  partner_match: aggregator
+  channel: partner-built
+  direction: partner-built
+  type: claimed
+  relationship: system-coverage
+  evidence: https://www.high-mobility.com/car-api/alfa-romeo-data-api
+  detected_by: sweep-automotive.py
+  detected: '2026-10-13'
 templates: []
